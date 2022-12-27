@@ -16,6 +16,7 @@ class CustomerController extends Controller
     {
         $customers = Customer::all();
         return view('admin.customer.index',compact('customers'));
+        //
     }
 
     /**
@@ -26,6 +27,7 @@ class CustomerController extends Controller
     public function create()
     {
         return view('admin.customer.create-edit');
+        //
     }
 
     /**
@@ -60,6 +62,7 @@ class CustomerController extends Controller
         
        return redirect('/admin/customers')->with('msg','Customer has been created!!');
 
+        //
     }
 
     /**
@@ -83,6 +86,7 @@ class CustomerController extends Controller
     {
         $customers = Customer::findOrFail($id);
         return view('admin.customer.create-edit',compact('customers'));
+        //
     }
 
     /**
@@ -118,6 +122,7 @@ class CustomerController extends Controller
         
        return redirect('/admin/customers')->with('msg','Customer has been updated!!');
 
+        //
     }
 
     /**
@@ -130,5 +135,6 @@ class CustomerController extends Controller
     {
        Customer::find($id)->delete();
        return back()->with('msg','Customer has been deleted');
+        //
     }
 }
