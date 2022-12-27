@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 
 use App\Models\Supplier;
 
+
+
 class SupplierController extends Controller
 {
 
@@ -16,6 +18,13 @@ class SupplierController extends Controller
         $suppliers = Supplier::paginate(10); 
         return view('admin.supplier.index',compact('suppliers'));
     }
+
+    public function autocompleteSearch(Request $request)
+    {
+          $query = $request->get('query');
+          $filterResult = Supplier::where('name', 'LIKE', '%'. $query. '%')->get();
+          return response()->json($filterResult);
+    } 
 
     public function create()
     {
@@ -28,6 +37,7 @@ class SupplierController extends Controller
         $address = $request->address;
         $phone = $request->phone;
         $contact_person = $request->contact_person;        
+        $created_by = Auth()->user()->id;        
 
         $request->validate([
             'name'=>'required',
@@ -40,7 +50,8 @@ class SupplierController extends Controller
             'name'=>$name,
             'address'=>$address,
             'phone'=>$phone,
-            'contact_person'=>$contact_person
+            'contact_person'=>$contact_person,
+            'created_by'=>$created_by
         ]); 
 
         return redirect('/admin/suppliers')->with('msg','Stored Successfully.'); 

@@ -8,7 +8,7 @@
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center my-1">
                                 <div>Create & Edit Form</div>
-                                <a href="{{ url('admin/sample') }}" class="btn btn-primary btn-sm" title="back">
+                                <a href="{{ url('admin/items') }}" class="btn btn-primary btn-sm" title="back">
                                     <i class="la la-chevron-circle-left"></i>
                                 </a>
                             </div>
@@ -25,6 +25,30 @@
                                     <div class="form-group">
                                         <label for="donationinput2" class="">Name</label>
                                         <input type="text" value="{{old('name') ?? $items->name}}" id="donationinput2" class="form-control @error('name') is-invalid @enderror" placeholder="Name" name="name">
+                                    </div>
+                                    <div class="form-group">
+                                        <select name="brand_id" class="form-control">
+                                                <option value="">Please Choose Brand</option>
+                                            @foreach ($brands as $brand)
+                                                <option value="{{ $brand->id }}">{{ $brand->name }}</option>
+                                            @endforeach             
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <select name="category_id" class="form-control">
+                                                <option value="">Please Choose Category</option>
+                                            @foreach ($categories as $category)
+                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                            @endforeach             
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <select name="item_location_id" class="form-control">
+                                                <option value="">Please Choose Item Location</option>
+                                            @foreach ($itemlocation as $il)
+                                                <option value="{{ $il->id }}">{{ $il->name }}</option>
+                                            @endforeach             
+                                        </select>
                                     </div>
                                     <div class="form-group">
                                         <div class="form-check">
@@ -54,6 +78,30 @@
                                     <div class="form-group">
                                         <label for="donationinput2" class="">Name</label>
                                         <input type="text" id="donationinput2" class="form-control @error('name') is-invalid @enderror" placeholder="Name" name="name">
+                                    </div>
+                                    <div class="form-group">
+                                        <select name="brand_id" class="form-control">
+                                                <option value="">Please Choose Brand</option>
+                                            @foreach ($brands as $brand)
+                                                <option value="{{ $brand->id }}">{{ $brand->name }}</option>
+                                            @endforeach             
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <select name="category_id" class="form-control">
+                                                <option value="">Please Choose Category</option>
+                                            @foreach ($categories as $category)
+                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                            @endforeach             
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <select name="item_location_id" class="form-control">
+                                                <option value="">Please Choose Item Location</option>
+                                            @foreach ($itemlocation as $il)
+                                                <option value="{{ $il->id }}">{{ $il->name }}</option>
+                                            @endforeach             
+                                        </select>
                                     </div>
                                     <div class="form-group">
                                         <div class="form-check">

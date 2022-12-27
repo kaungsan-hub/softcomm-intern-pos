@@ -38,7 +38,7 @@
                                                 <th scope="row">{{$itemLocation->id}}</th>
                                                 <td class="text-nowrap">{{$itemLocation->name}}</td>
                                                 <td>{{$itemLocation->description}}</td>
-                                                <td>{{$itemLocation->created_by}}</td>
+                                                <td>{{$itemLocation->user->name}}</td>
                                                 <td class="text-nowrap">
                                                     <form action="{{route('item-location.destroy', $itemLocation->id)}}" method="post">
                                                         @csrf

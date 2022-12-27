@@ -7,13 +7,13 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center">
-                                <div>Sample Tables</div>
+                                <div>Items Table</div>
                                 <a href="{{ url('admin/items/create') }}" class="btn btn-primary btn-sm" title="add new">
                                     <i class="la la-plus-circle"></i>
                                 </a>
                             </div>
-                            <form action="">
-                                <input type="text" class="form-control my-1 col-4 float-right" placeholder="search">
+                            <form action="{{url('admin/items/')}}" method="GET">
+                                <input type="text" name="search" class="form-control my-1 col-4 float-right" placeholder="search">
                             </form>
                             <div class="table-responsive">
                                 @if(session()->has('msg'))
@@ -40,16 +40,16 @@
                                         <tr>
                                             <td>{{$item->item_code}}</td>
                                             <td>{{$item->name}}</td>
-                                            <td>{{$item->brand_id}}</td>
-                                            <td>{{$item->category_id}}</td>
+                                            <td>{{$item->brands->name}}</td>
+                                            <td>{{$item->categories->name}}</td>
                                             <td>{{$item->warranty}}</td>
                                             <td>{{$item->imei_status}}</td>
                                             <td>{{$item->remark}}</td>
-                                            <td>{{$item->created_by}}</td>
+                                            <td>{{$item->users->name}}</td>
                                             <td>
                                                 <form action="{{url('admin/items/'.$item->id)}}" method="POST"> @csrf  @method('delete')
-                                                    <button class="btn btn-outline-danger btn-sm" onclick="return confirm('Are you sure?')">Remove</button>
-                                                    <a class="btn btn-outline-success btn-sm" href="{{url('admin/items/'.$item->id.'/edit')}}">Update </a>
+                                                    <a href="{{url('admin/items/'.$item->id.'/edit')}}" class="btn btn-sm btn-warning"><i class="ft-edit"></i></a>
+                                                    <button class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')"><i class="ft-trash"></i></button>
                                                 </form>
                                             </td>
                                         </tr>
