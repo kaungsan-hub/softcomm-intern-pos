@@ -13,15 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('items', function (Blueprint $table) {
             $table->id();
+            $table->string('item_code');
             $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->softDeletes();
-            $table->string('password');
-            $table->enum('role', array('admin','staff'));
-            $table->rememberToken();
+            $table->integer('brand_id');
+            $table->integer('category_id');
+            $table->integer('item_location_id');
+            $table->boolean('warranty');
+            $table->boolean('imei_status');
+            $table->text('remark');
+            $table->integer('created_by');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -34,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('items');
     }
 };
