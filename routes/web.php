@@ -16,12 +16,6 @@ Route::prefix('admin')->group(function(){
 
     //Supplier
     Route::resource('/suppliers',SupplierController::class);
-
-    // Route::get('/suppliers', [AdminController::class, 'index']);
-    // Route::get('/suppliers/create-edit', [AdminController::class, 'create-edit']);
-
-
-
     
 
 });
