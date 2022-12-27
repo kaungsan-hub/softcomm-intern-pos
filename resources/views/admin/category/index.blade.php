@@ -45,13 +45,13 @@
                                             <td>{{$category->id}}</td>
                                             <td>{{$category->name}}</td>
                                             <td>{{$category->description}}</td>
-                                            <td>{{$category->created_by->name}}</td>
+                                            <td>{{$category->user->name}}</td>
                                             <td>
                                                 <form action="{{url('admin/categories/'.$category->id)}}" method="post">
                                                     @csrf
                                                     @method('delete')
-                                                    <a href="{{url('admin/categories/'.$category->id.'/edit')}}" class="btn btn-primary btn-sm">Edit</a>
-                                                    <button class="btn btn-danger btn-sm" onclick="return comfirm('are you sure want to delete')">Delete</button>
+                                                    <a href="{{url('admin/categories/'.$category->id.'/edit')}}" class="btn btn-warning btn-sm"><i class="ft-edit"></i></a>
+                                                    <button class="btn btn-danger btn-sm" onclick="return comfirm('are you sure want to delete')"><i class="ft-trash"></i></button>
                                                 </form>
                                             </td>
                                             

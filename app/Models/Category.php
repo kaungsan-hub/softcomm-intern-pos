@@ -12,7 +12,7 @@ class Category extends Model
     use SoftDeletes;
     protected $fillable = ['name','description','created_by'];
 
-    public function category()
+    public function user()
     {
         return $this->belongsTo(User::class, 'created_by');
     }

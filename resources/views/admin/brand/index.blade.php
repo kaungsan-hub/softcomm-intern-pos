@@ -44,13 +44,13 @@
                                             <td>{{$brand->id}}</td>
                                             <td>{{$brand->brand_code}}</td>
                                             <td>{{$brand->name}}</td>
-                                            <td>{{$brand->created_by->name}}</td>
+                                            <td>{{$brand->user->name}}</td>
                                             <td>
                                                 <form action="{{url('admin/brands/'.$brand->id)}}" method="post">
                                                     @csrf
                                                     @method('delete')
-                                                    <a href="{{url('admin/brands/'.$brand->id.'/edit')}}" class="btn btn-primary btn-sm">Edit</a>
-                                                    <button class="btn btn-danger btn-sm" onclick="return comfirm('are you sure want to delete')">Delete</button>
+                                                    <a href="{{url('admin/brands/'.$brand->id.'/edit')}}" class="btn btn-warning btn-sm"><i class="ft-edit"></i></a>
+                                                    <button class="btn btn-danger btn-sm" onclick="return comfirm('are you sure want to delete')"><i class="ft-trash"></i></button>
                                                 </form>
                                             </td>
                                             
