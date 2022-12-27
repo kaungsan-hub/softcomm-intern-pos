@@ -28,7 +28,6 @@ Route::middleware('authMiddleware')->group(function () {
         // User
         Route::resource('/users', UserController::class);
 
-
         //Supplier
         Route::resource('/suppliers', SupplierController::class);
 

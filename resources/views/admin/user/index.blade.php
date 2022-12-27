@@ -12,8 +12,15 @@
                                     <i class="la la-plus-circle"></i>
                                 </a>
                             </div>
-                            <form action="">
-                                <input type="text" class="form-control my-1 col-4 float-right" placeholder="search">
+                            <form method="GET" action="{{ url('admin/users') }}" class="form-inline my-2 my-lg-0 float-right">
+                                <div class="input-group my-1">
+                                    <input type="text" class="form-control" placeholder="Search" name="q">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary btn-sm" type="submit">
+                                            <i class="la la-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
                             </form>
                             <div class="table-responsive">
                                 @if (Session::has('msg'))
@@ -42,7 +49,8 @@
                                                     <form action="{{ url('admin/users/' . $user->id) }}" method="POST">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <a href="{{ url('admin/users/'. $user->id .'/edit') }}" class="btn btn-warning btn-sm">Edit</a>
+                                                        <a href="{{ url('admin/users/' . $user->id . '/edit') }}"
+                                                            class="btn btn-warning btn-sm">Edit</a>
                                                         <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                                                     </form>
                                                 </td>
