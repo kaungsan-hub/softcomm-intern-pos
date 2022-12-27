@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Models\Order;
 
 class CategoryController extends Controller
 {
@@ -12,9 +13,16 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $categories = Category::all();
+        if (isset($request->q)) {
+            $categories = Category::query()
+                ->where('name', 'LIKE', "%{$request->q}%")
+                ->orWhere('description', 'LIKE', "%{$request->q}%")
+                ->get();
+        } else {
+            $categories = Category::all();
+        }
         return view('admin.category.index',compact('categories'));
     }
 
@@ -44,7 +52,7 @@ class CategoryController extends Controller
         Category::create([
             'name' => $request->name,
             'description' => $request->description,
-            'created_by' => 1
+            'created_by' => Auth()->user()->id
         ]);
 
         return redirect('/admin/categories')->with('msg','A Brand is created successfully');
@@ -91,7 +99,6 @@ class CategoryController extends Controller
         $category->update([
             'name' => $request->name,
             'description' => $request->description,
-            'created_by' => 1
         ]);
         
         return redirect('admin/categories')->with('msg','Brand updated successfully');
@@ -108,5 +115,7 @@ class CategoryController extends Controller
         Category::find($id)->delete();
         return back();
     }
+
+
 
 }

@@ -12,4 +12,9 @@ class Brand extends Model
     use SoftDeletes;
 
     protected $fillable = ['brand_code','name','created_by'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
 }
