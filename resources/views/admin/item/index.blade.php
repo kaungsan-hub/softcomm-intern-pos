@@ -7,8 +7,8 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center">
-                                <div>Item Tables</div>
-                                <a href="{{ url('admin/sample/create-edit') }}" class="btn btn-primary btn-sm" title="add new">
+                                <div>Sample Tables</div>
+                                <a href="{{ url('admin/items/create') }}" class="btn btn-primary btn-sm" title="add new">
                                     <i class="la la-plus-circle"></i>
                                 </a>
                             </div>
@@ -16,34 +16,45 @@
                                 <input type="text" class="form-control my-1 col-4 float-right" placeholder="search">
                             </form>
                             <div class="table-responsive">
+                                @if(session()->has('msg'))
+                                    <div class="alert alert-light mt-3">
+                                        <span>{{ session()->get('msg') }}</span>
+                                    </div>
+                                @endif
                                 <table class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
-                                            <th>#</th>
-                                            <th>First Name</th>
-                                            <th>Last Name</th>
-                                            <th>Username</th>
+                                            <th>Item Code</th>
+                                            <th>Name</th>
+                                            <th>Brand</th>
+                                            <th>Category</th>
+                                            <th>Warranty</th>
+                                            <th>IMEI</th>
+                                            <th>Remark</th>
+                                            <th>User</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach ($items as $item)
                                         <tr>
-                                            <th scope="row">1</th>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
+                                            <td>{{$item->item_code}}</td>
+                                            <td>{{$item->name}}</td>
+                                            <td>{{$item->brand_id}}</td>
+                                            <td>{{$item->category_id}}</td>
+                                            <td>{{$item->warranty}}</td>
+                                            <td>{{$item->imei_status}}</td>
+                                            <td>{{$item->remark}}</td>
+                                            <td>{{$item->created_by}}</td>
+                                            <td>
+                                                <form action="{{url('admin/items/'.$item->id)}}" method="POST"> @csrf  @method('delete')
+                                                    <button class="btn btn-outline-danger btn-sm" onclick="return confirm('Are you sure?')">Remove</button>
+                                                    <a class="btn btn-outline-success btn-sm" href="{{url('admin/items/'.$item->id.'/edit')}}">Update </a>
+                                                </form>
+                                            </td>
                                         </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">3</th>
-                                            <td>Larry</td>
-                                            <td>the Bird</td>
-                                            <td>@twitter</td>
-                                        </tr>
+                                        @endforeach
+                                        
                                     </tbody>
                                 </table>
                             </div>

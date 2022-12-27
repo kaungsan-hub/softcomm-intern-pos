@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Item;
 
 class ItemController extends Controller
 {
@@ -14,7 +15,8 @@ class ItemController extends Controller
      */
     public function index()
     {
-        return view('admin.item.index');
+        $items = Item::all();
+        return view('admin.item.index', compact('items'));
     }
 
     /**
@@ -24,7 +26,7 @@ class ItemController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.item.create-edit');
     }
 
     /**
@@ -35,7 +37,34 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $item_code = $request->item_code;
+        $name = $request->name;
+        $brand_id = 1;
+        $category_id = 1;
+        $item_location_id = 1;
+        $warranty = $request->has('warranty') ? '1' : '0';
+        $imei_status = $request->has ('imei_status') ? '1' : '0';
+        $remark = $request->remark;
+        $created_by = 1;
+
+        $request->validate([
+            'item_code'=>'required',
+            'name'=>'required',
+            'remark'=>'required'
+        ]);
+
+        Item::create([
+            'item_code'=>$item_code,
+            'name'=>$name,
+            'brand_id'=>$brand_id,
+            'category_id'=>$category_id,
+            'item_location_id'=>$item_location_id,
+            'warranty'=>$warranty,
+            'imei_status'=>$imei_status,
+            'remark'=>$remark,
+            'created_by'=>$created_by
+        ]);
+        return redirect('/admin/items');
     }
 
     /**
@@ -57,7 +86,8 @@ class ItemController extends Controller
      */
     public function edit($id)
     {
-        //
+        $items=Item::find($id);
+        return view('admin.item.create-edit', compact('items'));
     }
 
     /**
@@ -69,7 +99,22 @@ class ItemController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $warranty = $request->has('warranty') ? '1' : '0';
+        $imei_status = $request->has ('imei_status') ? '1' : '0';
+        $request->validate([
+            'item_code'=>'required',
+            'name'=>'required',
+            'remark'=>'required'
+        ]);
+        Item::find($id)->update([
+            'item_code'=>$request->item_code,
+            'name'=>$request->name,
+            'warranty'=>$warranty,
+            'imei_status'=>$imei_status,
+            'remark'=>$request->remark
+        ]);
+        session()->flash('msg','Update Successful');
+        return redirect('admin/items');
     }
 
     /**
@@ -80,6 +125,8 @@ class ItemController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Item::find($id)->delete();
+        session()->flash('msg', 'Item Remove Successful');
+        return back();
     }
 }
