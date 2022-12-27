@@ -21,9 +21,9 @@
                             </form>
 
                             @if (session()->has('msg'))
-                                <div class="alert alert-success">
+                                <div class="alert alert-success" role="alert">
                                     <span>{{ session()->get('msg') }} messagehere</span>
-                                    {{-- <button data-bs-dismiss="alert" class="btn btn-close float-end"> </button> --}}
+                                    <button data-bs-dismiss="alert" class="btn btn-close float-right"> </button>
                                 </div>
                             @endif
 
@@ -41,6 +41,7 @@
                                             <th>Created By</th>
                                             <th>Created At</th>
                                             <th>Updated By</th>
+                                            <th>Deleted At</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -56,19 +57,27 @@
                                                 <td>{{ $supplier->created_by }}</td>
                                                 <td>{{ $supplier->created_at }}</td>
                                                 <td>{{ $supplier->updated_at }}</td>
+                                                <td>{{ $supplier->deleted_at }}</td>
                                                 <td>
-                                                    <form action="{{ url('admin/suppliers/' . $supplier->id) }}" method="post">
+                                                    <form action="{{ url('admin/suppliers/' . $supplier->id) }}"
+                                                        method="post">
                                                         @csrf
                                                         @method('delete')
+
                                                         <table>
                                                             <tr>
-                                                                <td> <a href="{{ url('admin/suppliers/' . $supplier->id . '/edit') }}"
-                                                                        class="btn btn-info">Edit</a> </td>
-                                                                <td> <button class="btn btn-danger" onclick="return confirm('Are you sure to delete?')">Delete</button>
+                                                                <td>
+                                                                    <a href="{{ url('admin/suppliers/' . $supplier->id . '/edit') }}"
+                                                                        class="btn btn-info btn-sm">Edit</a>
+                                                                </td>
+                                                                <td>
+                                                                    <button class="btn btn-danger btn-sm"
+                                                                onclick="return confirm('Are you sure to delete?')">Delete</button>
                                                                 </td>
                                                             </tr>
                                                         </table>
-                                                    </form>
+          
+                                                        </form>
                                                 </td>
                                             </tr>
                                         @endforeach
