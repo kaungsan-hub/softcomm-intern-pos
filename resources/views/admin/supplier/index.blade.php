@@ -16,9 +16,30 @@
 
                             </div>
 
-                            <form action="">
-                                <input type="text" class="form-control my-1 col-4 float-right" placeholder="search">
-                            </form>
+                            {{-- <form action="">
+                                <input type="text" name="search" id="search" class="form-control my-1 col-4 float-right" placeholder="search">
+                            </form> --}}
+
+                            <div classs="form-group">
+                                <input type="text" id="search" name="search" placeholder="Search"
+                                    class="form-control my-1 col-4 float-right" />
+                            </div>
+
+                            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
+
+                            <script type="text/javascript">
+                                var route = "{{ url('admin/suppliers/autocomplete-search') }}";
+                                $('#search').typeahead({
+                                    source: function(query, process) {
+                                        return $.get(route, {
+                                            query: query
+                                        }, function(data) {
+                                            return process(data);
+                                        });
+                                    }
+                                });
+                            </script>
 
                             @if (session()->has('msg'))
                                 <div class="alert alert-success" role="alert">
@@ -72,12 +93,12 @@
                                                                 </td>
                                                                 <td>
                                                                     <button class="btn btn-danger btn-sm"
-                                                                onclick="return confirm('Are you sure to delete?')">Delete</button>
+                                                                        onclick="return confirm('Are you sure to delete?')">Delete</button>
                                                                 </td>
                                                             </tr>
                                                         </table>
-          
-                                                        </form>
+
+                                                    </form>
                                                 </td>
                                             </tr>
                                         @endforeach

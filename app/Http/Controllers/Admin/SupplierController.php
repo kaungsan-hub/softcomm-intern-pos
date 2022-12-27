@@ -19,6 +19,13 @@ class SupplierController extends Controller
         return view('admin.supplier.index',compact('suppliers'));
     }
 
+    public function autocompleteSearch(Request $request)
+    {
+          $query = $request->get('query');
+          $filterResult = Supplier::where('name', 'LIKE', '%'. $query. '%')->get();
+          return response()->json($filterResult);
+    } 
+
     public function create()
     {
         return view('admin.supplier.create-edit');

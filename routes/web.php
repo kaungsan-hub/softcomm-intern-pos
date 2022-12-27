@@ -32,8 +32,7 @@ Route::middleware('authMiddleware')->group(function () {
         //Supplier
         Route::resource('/suppliers', SupplierController::class);
 
-        // Route::get('/suppliers', [AdminController::class, 'index']);
-        // Route::get('/suppliers/create-edit', [AdminController::class, 'create-edit']);
+        Route::get('/suppliers/autocomplete-search', [SupplierController::class, 'autocompleteSearch']);
 
         # item
         Route::resource('items', ItemController::class);
