@@ -17,10 +17,14 @@
                                     <i class="la la-plus-circle"></i>
                                 </a>
                             </div>
-                            <form action="{{url('/search')}}" method="get">
-                                <div>
-                                    @csrf
-                                <input type="search" name="search" class="form-control my-1 col-4 float-right" placeholder="search">
+                            <form method="GET" action="{{ url('admin/brands') }}" class="form-inline my-2 my-lg-0 float-right">
+                                <div class="input-group my-1">
+                                    <input type="text" class="form-control" placeholder="Search" name="q">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary btn-sm" type="submit">
+                                            <i class="la la-search"></i>
+                                        </button>
+                                    </div>
                                 </div>
                             </form>
                             <div class="table-responsive">

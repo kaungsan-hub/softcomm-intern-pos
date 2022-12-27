@@ -13,9 +13,16 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $categories = Category::all();
+        if (isset($request->q)) {
+            $categories = Category::query()
+                ->where('name', 'LIKE', "%{$request->q}%")
+                ->orWhere('description', 'LIKE', "%{$request->q}%")
+                ->get();
+        } else {
+            $categories = Category::all();
+        }
         return view('admin.category.index',compact('categories'));
     }
 
@@ -108,5 +115,7 @@ class CategoryController extends Controller
         Category::find($id)->delete();
         return back();
     }
+
+
 
 }

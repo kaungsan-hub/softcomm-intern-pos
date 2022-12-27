@@ -27,6 +27,7 @@ class UserController extends Controller
         } else {
             $users = User::all();
         }
+
         return view('admin.user.index', compact('users'));
     }
 
