@@ -88,17 +88,19 @@
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
           <li class="active"><a href="{{url('admin')}}"><i class="ft-home"></i><span class="menu-title" data-i18n="">Dashboard</span></a>
           </li>
-          <li class="nav-item"><a href="#"><i class="ft-pie-chart"></i><span class="menu-title" data-i18n="">Category</span></a>
+          <li class="nav-item"><a href="{{url('admin/categories')}}"><i class="ft-pie-chart"></i><span class="menu-title" data-i18n="">Category</span></a>
           </li>
-          <li class="nav-item"><a href="#"><i class="ft-droplet"></i><span class="menu-title" data-i18n="">Subcategory</span></a>
+          <li class="nav-item"><a href="{{url('admin/brands')}}"><i class="ft-droplet"></i><span class="menu-title" data-i18n="">Brand</span></a>
+          </li>
+          <li class="nav-item"><a href="#"><i class="ft-credit-card"></i><span class="menu-title" data-i18n="">Item Location</span></a>
           </li>
           <li class="nav-item"><a href="#"><i class="ft-layers"></i><span class="menu-title" data-i18n="">Item</span></a>
           </li>
-          <li class="nav-item"><a href="#"><i class="ft-box"></i><span class="menu-title" data-i18n="">Menu1</span></a>
+          <li class="nav-item"><a href="#"><i class="ft-box"></i><span class="menu-title" data-i18n="">Supplier</span></a>
           </li>
-          <li class="nav-item"><a href="#"><i class="ft-bold"></i><span class="menu-title" data-i18n="">Menu2</span></a>
+          <li class="nav-item"><a href="#"><i class="ft-bold"></i><span class="menu-title" data-i18n="">Customer</span></a>
           </li>
-          <li class="nav-item"><a href="#"><i class="ft-credit-card"></i><span class="menu-title" data-i18n="">Menu3</span></a>
+          <li class="nav-item"><a href="#"><i class="ft-credit-card"></i><span class="menu-title" data-i18n="">User</span></a>
           </li>
           <li class="nav-item"><a href="{{url('admin/sample')}}"><i class="ft-layout"></i><span class="menu-title" data-i18n="">Sample Features</span></a>
           </li>
