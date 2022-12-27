@@ -5,7 +5,7 @@ use App\Http\Controllers\Admin\ItemLocationController;
 use App\Http\Controllers\Admin\{AdminController, AuthController, UserController, ItemController};
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\{CategoryController, BrandController};
+use App\Http\Controllers\Admin\{CategoryController, BrandController, SupplierController};
 
 Route::get('/', function () {
     return view('welcome');
@@ -21,7 +21,6 @@ Route::post('/logout', [AuthController::class, 'logout']);
 Route::middleware('authMiddleware')->group(function () {
     Route::prefix('admin')->group(function () {
         Route::get('/', [AdminController::class, 'index']);
-
         // Sample
         Route::get('/sample', [AdminController::class, 'sampleIndex']);
         Route::get('/sample/create-edit', [AdminController::class, 'sampleCreateEdit']);
@@ -32,11 +31,25 @@ Route::middleware('authMiddleware')->group(function () {
 
     //Supplier
         Route::resource('/suppliers',SupplierController::class);
+        //Supplier
+        Route::resource('/suppliers', SupplierController::class);
+
+        // Route::get('/suppliers', [AdminController::class, 'index']);
+        // Route::get('/suppliers/create-edit', [AdminController::class, 'create-edit']);
 
         # item
         Route::resource('items', ItemController::class);
 
-        // item
-        Route::resource('/item-location',ItemLocationController::class);
+        # item-location
+
+        Route::resource('/item-location', ItemLocationController::class);
+
+        # category
+        Route::resource('/categories', CategoryController::class);
+        # brand
+        Route::resource('/brands', BrandController::class);
+
+        //Supplier
+        Route::resource('/suppliers', SupplierController::class);
     });
 });

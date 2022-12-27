@@ -19,7 +19,7 @@
                             @method('PUT')
                             @else
                             <form class="col-6" method="post" action="{{ url('admin/categories') }}">
-                        @endif
+                            @endif
                                 @csrf
                                 <div class="form-body">
                                     <div class="form-group">
