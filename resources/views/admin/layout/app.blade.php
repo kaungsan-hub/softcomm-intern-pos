@@ -108,8 +108,13 @@
                                         href="#"><i class="ft-check-square"></i> Task</a><a
                                         class="dropdown-item" href="#"><i class="ft-message-square"></i>
                                         Chats</a>
-                                    <div class="dropdown-divider"></div><a class="dropdown-item" href="#"><i
-                                            class="ft-power"></i> Logout</a>
+                                    <form action="{{ url('/logout') }}" method="POST">
+                                        @csrf
+                                        <div class="dropdown-divider"></div>
+                                        <button class="btn btn-link">
+                                            <p class="text-danger"><i class="ft-power"></i> Logout</p>
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </li>
@@ -133,7 +138,8 @@
         </div>
         <div class="main-menu-content">
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-                <li class="active"><a href="{{ url('admin') }}"><i class="ft-home"></i><span class="menu-title"
+                <li class="nav-item {{ Route::current()->uri == 'admin' ? 'active' : '' }}"><a
+                        href="{{ url('admin') }}"><i class="ft-home"></i><span class="menu-title"
                             data-i18n="">Dashboard</span></a>
                 </li>
                 <li class="nav-item"><a href="#"><i class="ft-pie-chart"></i><span class="menu-title"
@@ -154,8 +160,9 @@
                 <li class="nav-item"><a href="#"><i class="ft-user"></i><span class="menu-title"
                             data-i18n="">Customer</span></a>
                 </li>
-                <li class="nav-item"><a href="{{ url('admin/sample') }}"><i class="ft-user"></i><span
-                            class="menu-title" data-i18n="">User</span></a>
+                <li class="nav-item {{ Route::current()->uri == 'admin/users' ? 'active' : '' }}"><a
+                        href="{{ url('admin/users') }}"><i class="ft-user"></i><span class="menu-title"
+                            data-i18n="">User</span></a>
                 </li>
                 <li class="nav-item"><a href="{{ url('admin/sample') }}"><i class="ft-layout"></i><span
                             class="menu-title" data-i18n="">Sample Features</span></a>
