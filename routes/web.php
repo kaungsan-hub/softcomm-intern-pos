@@ -1,7 +1,7 @@
 <?php
 
 
-use App\Http\Controllers\Admin\{AdminController, AuthController, UserController};
+use App\Http\Controllers\Admin\{AdminController, AuthController, UserController, ItemController};
 
 use Illuminate\Support\Facades\Route;
 
@@ -32,5 +32,8 @@ Route::middleware('authMiddleware')->group(function () {
 
         // Route::get('/suppliers', [AdminController::class, 'index']);
         // Route::get('/suppliers/create-edit', [AdminController::class, 'create-edit']);
+
+        # item
+        Route::resource('items', ItemController::class);
     });
 });
