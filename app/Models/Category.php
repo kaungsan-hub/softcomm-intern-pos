@@ -11,4 +11,9 @@ class Category extends Model
     use HasFactory;
     use SoftDeletes;
     protected $fillable = ['name','description','created_by'];
+
+    public function category()
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
 }

@@ -44,7 +44,7 @@
                                             <td>{{$brand->id}}</td>
                                             <td>{{$brand->brand_code}}</td>
                                             <td>{{$brand->name}}</td>
-                                            <td>{{$brand->created_by}}</td>
+                                            <td>{{$brand->created_by->name}}</td>
                                             <td>
                                                 <form action="{{url('admin/brands/'.$brand->id)}}" method="post">
                                                     @csrf

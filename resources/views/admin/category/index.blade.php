@@ -45,7 +45,7 @@
                                             <td>{{$category->id}}</td>
                                             <td>{{$category->name}}</td>
                                             <td>{{$category->description}}</td>
-                                            <td>{{$category->created_by}}</td>
+                                            <td>{{$category->created_by->name}}</td>
                                             <td>
                                                 <form action="{{url('admin/categories/'.$category->id)}}" method="post">
                                                     @csrf
