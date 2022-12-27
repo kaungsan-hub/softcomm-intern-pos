@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Item;
+use App\Models\{Item, Brand};
 use Illuminate\Support\Facades\Auth;
 
 class ItemController extends Controller
@@ -15,9 +15,11 @@ class ItemController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    { 
         $items = Item::all();
-        return view('admin.item.index', compact('items'));
+        $brands = Brand::all();
+        
+        return view('admin.item.index', compact('items','brands'));
     }
 
     /**

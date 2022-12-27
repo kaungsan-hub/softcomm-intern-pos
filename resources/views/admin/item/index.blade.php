@@ -40,8 +40,8 @@
                                         <tr>
                                             <td>{{$item->item_code}}</td>
                                             <td>{{$item->name}}</td>
-                                            <td>{{$item->brand_id}}</td>
-                                            <td>{{$item->category_id}}</td>
+                                            <td>{{$item->brands->name}}</td>
+                                            <td>{{$item->categories->name}}</td>
                                             <td>{{$item->warranty}}</td>
                                             <td>{{$item->imei_status}}</td>
                                             <td>{{$item->remark}}</td>

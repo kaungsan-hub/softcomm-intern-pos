@@ -1,56 +1,85 @@
 @extends('admin.layout.app')
 @section('content')
-  <div class="content-wrapper">
+    <div class="content-wrapper">
         <div class="content-body">
             <div class="row my-1">
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center">
-                                <div>Sample Tables</div>
-                                <a href="{{ url('admin/sample/create-edit') }}" class="btn btn-primary btn-sm" title="add new">
+
+                                <div>Supplier Table</div>
+
+                                <a href="{{ url('admin/suppliers/create') }}" class="btn btn-primary btn-sm" title="add new">
                                     <i class="la la-plus-circle"></i>
                                 </a>
+
                             </div>
+
                             <form action="">
                                 <input type="text" class="form-control my-1 col-4 float-right" placeholder="search">
                             </form>
+
+                            @if (session()->has('msg'))
+                                <div class="alert alert-success">
+                                    <span>{{ session()->get('msg') }} messagehere</span>
+                                    {{-- <button data-bs-dismiss="alert" class="btn btn-close float-end"> </button> --}}
+                                </div>
+                            @endif
+
                             <div class="table-responsive">
                                 <table class="table table-bordered table-hover">
                                     <thead>
-                                        <tr>
+                                        <tr class="text-center">
+                                            {{-- created_at	updated_at --}}
                                             <th>#</th>
-                                            <th>First Name</th>
-                                            <th>Last Name</th>
-                                            <th>Username</th>
+                                            <th>id</th>
+                                            <th>Name</th>
+                                            <th>Address</th>
+                                            <th>Phone</th>
+                                            <th>Contact Person</th>
+                                            <th>Created By</th>
+                                            <th>Created At</th>
+                                            <th>Updated By</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">3</th>
-                                            <td>Larry</td>
-                                            <td>the Bird</td>
-                                            <td>@twitter</td>
-                                        </tr>
+                                        @foreach ($suppliers as $supplier)
+                                            <tr>
+                                                <td>{{ $supplier->id }}</td>
+                                                <td>{{ $supplier->id }}</td>
+                                                <td>{{ $supplier->name }}</td>
+                                                <td>{{ $supplier->address }}</td>
+                                                <td>{{ $supplier->phone }}</td>
+                                                <td>{{ $supplier->contact_person }}</td>
+                                                <td>{{ $supplier->created_by }}</td>
+                                                <td>{{ $supplier->created_at }}</td>
+                                                <td>{{ $supplier->updated_at }}</td>
+                                                <td>
+                                                    <form action="{{ url('admin/suppliers/' . $supplier->id) }}" method="post">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <table>
+                                                            <tr>
+                                                                <td> <a href="{{ url('admin/suppliers/' . $supplier->id . '/edit') }}"
+                                                                        class="btn btn-info">Edit</a> </td>
+                                                                <td> <button class="btn btn-danger" onclick="return confirm('Are you sure to delete?')">Delete</button>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-  </div>
+    </div>
 @endsection
