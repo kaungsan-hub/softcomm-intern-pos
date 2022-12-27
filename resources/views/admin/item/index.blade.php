@@ -45,7 +45,7 @@
                                             <td>{{$item->warranty}}</td>
                                             <td>{{$item->imei_status}}</td>
                                             <td>{{$item->remark}}</td>
-                                            <td>{{$item->created_by}}</td>
+                                            <td>{{Auth()->user()->name}}</td>
                                             <td>
                                                 <form action="{{url('admin/items/'.$item->id)}}" method="POST"> @csrf  @method('delete')
                                                     <button class="btn btn-outline-danger btn-sm" onclick="return confirm('Are you sure?')">Remove</button>

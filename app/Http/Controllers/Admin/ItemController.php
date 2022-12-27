@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Item;
+use Illuminate\Support\Facades\Auth;
 
 class ItemController extends Controller
 {
@@ -45,8 +46,8 @@ class ItemController extends Controller
         $warranty = $request->has('warranty') ? '1' : '0';
         $imei_status = $request->has ('imei_status') ? '1' : '0';
         $remark = $request->remark;
-        $created_by = 1;
-
+        $created_by = Auth()->user()->id;
+dd($created_by);
         $request->validate([
             'item_code'=>'required',
             'name'=>'required',
