@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\ItemLocation;
+use App\Models\Counter;
 use Illuminate\Http\Request;
 
-class ItemLocationController extends Controller
+
+class CounterController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +16,8 @@ class ItemLocationController extends Controller
      */
     public function index()
     {
-        $itemsLocation = ItemLocation::paginate(10);
-        return view('admin.item-location.index',compact('itemsLocation'));
+        $counters = Counter::paginate(10);
+        return view('admin.counter.index',compact('counters'));
     }
 
     /**
@@ -26,7 +27,7 @@ class ItemLocationController extends Controller
      */
     public function create()
     {
-        return view('admin.item-location.create-edit');
+        return view('admin.counter.create-edit');
     }
 
     /**
@@ -38,16 +39,14 @@ class ItemLocationController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|unique:item_locations,name|min:3',
-            'description' => 'required|min:3'
+            'name' => 'required|unique:counters,name|min:3',
         ]);
 
-        ItemLocation::create([
+        Counter::create([
             'name' => $request->name,
-            'description' => $request->description,
             'created_by'  => 1
         ]);
-        return redirect()->route('item-location.index')->with('msg','Item-Location has been created successfully.');
+        return redirect()->route('counters.index')->with('msg','Counter has been created successfully.');
     }
 
     /**
@@ -69,8 +68,8 @@ class ItemLocationController extends Controller
      */
     public function edit($id)
     {
-        $itemLocation = ItemLocation::findOrFail($id);
-        return view('admin.item-location.create-edit',compact('itemLocation'));
+        $counter = Counter::findOrFail($id);
+        return view('admin.counter.create-edit',compact('counter'));
     }
 
     /**
@@ -84,15 +83,13 @@ class ItemLocationController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'description' => 'required'
         ]);
 
-        ItemLocation::findOrFail($id)->update([
+        Counter::findOrFail($id)->update([
             'name' => $request->name,
-            'description' => $request->description,
             'created_by'  => 1
         ]);
-        return redirect()->route('item-location.index')->with('msg','Item-Location has been updated successfully.');
+        return redirect()->route('counters.index')->with('msg','Counter has been updated successfully.');
 
     }
 
@@ -104,7 +101,7 @@ class ItemLocationController extends Controller
      */
     public function destroy($id)
     {
-        ItemLocation::findOrFail($id)->delete();
-        return back()->with('msg','Item-Location has been deleted successfully');
+        Counter::findOrFail($id)->delete();
+        return back()->with('msg','Counter has been deleted successfully');
     }
 }

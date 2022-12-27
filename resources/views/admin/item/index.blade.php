@@ -40,12 +40,12 @@
                                         <tr>
                                             <td>{{$item->item_code}}</td>
                                             <td>{{$item->name}}</td>
-                                            <td>{{$item->brand_id}}</td>
-                                            <td>{{$item->category_id}}</td>
+                                            <td>{{$item->brands->name}}</td>
+                                            <td>{{$item->categories->name}}</td>
                                             <td>{{$item->warranty}}</td>
                                             <td>{{$item->imei_status}}</td>
                                             <td>{{$item->remark}}</td>
-                                            <td>{{$item->created_by}}</td>
+                                            <td>{{Auth()->user()->name}}</td>
                                             <td>
                                                 <form action="{{url('admin/items/'.$item->id)}}" method="POST"> @csrf  @method('delete')
                                                     <button class="btn btn-outline-danger btn-sm" onclick="return confirm('Are you sure?')">Remove</button>

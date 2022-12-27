@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('counters', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->integer('created_by');
+            $table->softDeletes('deleted_at');
             $table->timestamps();
         });
     }

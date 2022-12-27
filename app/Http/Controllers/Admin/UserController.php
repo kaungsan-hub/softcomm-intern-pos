@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
@@ -15,9 +16,18 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::all();
+        if (isset($request->q)) {
+            $users = User::query()
+                ->where('name', 'LIKE', "%{$request->q}%")
+                ->orWhere('id', 'LIKE', "%{$request->q}%")
+                ->orWhere('email', 'LIKE', "%{$request->q}%")
+                ->orWhere('role', 'LIKE', "%{$request->q}%")
+                ->get();
+        } else {
+            $users = User::all();
+        }
         return view('admin.user.index', compact('users'));
     }
 
