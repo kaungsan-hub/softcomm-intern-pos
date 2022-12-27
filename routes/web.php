@@ -30,7 +30,7 @@ Route::middleware('authMiddleware')->group(function () {
         Route::resource('/users', UserController::class);
 
 
-        //Supplier
+    //Supplier
         Route::resource('/suppliers',SupplierController::class);
 
         # item

@@ -43,8 +43,8 @@
                                                     <form action="{{route('item-location.destroy', $itemLocation->id)}}" method="post">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <a href="{{route('item-location.edit',$itemLocation->id)}}" class="btn btn-sm btn-warning">Edit</a>
-                                                        <button class="btn btn-sm btn-danger">Delete</button>
+                                                        <a href="{{route('item-location.edit',$itemLocation->id)}}" class="btn btn-sm btn-warning"><i class="ft-edit"></i></a>
+                                                        <button class="btn btn-sm btn-danger"><i class="ft-trash"></i></button>
                                                     </form>
                                                 </td>
                                             </tr>

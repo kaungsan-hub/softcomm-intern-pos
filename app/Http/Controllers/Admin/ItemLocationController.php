@@ -37,8 +37,8 @@ class ItemLocationController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'description' => 'required'
+            'name' => 'required|unique:item_locations,name|min:3',
+            'description' => 'required|min:3'
         ]);
 
         ItemLocation::create([
