@@ -20,9 +20,10 @@ class UserController extends Controller
     {
         if (isset($request->q)) {
             $users = User::query()
-                ->where('name', 'LIKE', "%{$request->keyword}%")
-                ->orWhere('email', 'LIKE', "%{$request->keyword}%")
-                ->orWhere('role', 'LIKE', "%{$request->keyword}%")
+                ->where('name', 'LIKE', "%{$request->q}%")
+                ->orWhere('id', 'LIKE', "%{$request->q}%")
+                ->orWhere('email', 'LIKE', "%{$request->q}%")
+                ->orWhere('role', 'LIKE', "%{$request->q}%")
                 ->get();
         } else {
             $users = User::all();
