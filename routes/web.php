@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Admin\ItemLocationController;
 
-use App\Http\Controllers\Admin\{AdminController, AuthController, UserController, ItemController};
+use App\Http\Controllers\Admin\{AdminController, AuthController, CounterController, UserController, ItemController};
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\{CategoryController, BrandController, SupplierController};
@@ -46,6 +46,10 @@ Route::middleware('authMiddleware')->group(function () {
 
         # category
         Route::resource('/categories', CategoryController::class);
+
+        # counter
+        Route::resource('/counters', CounterController::class);
+
         # brand
         Route::resource('/brands', BrandController::class);
 
