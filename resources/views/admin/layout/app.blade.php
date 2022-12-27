@@ -100,8 +100,7 @@
                                 <div class="arrow_box_right"><a class="dropdown-item" href="#"><span
                                             class="avatar avatar-online"><img
                                                 src="{{ asset('admin-panel/theme-assets/images/portrait/small/avatar-s-19.png') }}"
-                                                alt="avatar"><span class="user-name text-bold-700 ml-1">John
-                                                Doe</span></span></a>
+                                                alt="avatar"><span class="user-name text-bold-700 ml-1">{{Auth()->user()->name}}</span></span></a>
                                     <div class="dropdown-divider"></div><a class="dropdown-item" href="#"><i
                                             class="ft-user"></i> Edit Profile</a><a class="dropdown-item"
                                         href="#"><i class="ft-mail"></i> My Inbox</a><a class="dropdown-item"
