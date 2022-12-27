@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\ItemLocationController;
 use App\Http\Controllers\Admin\{AdminController, AuthController, UserController, ItemController};
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\{CategoryController, BrandController};
 
 Route::get('/', function () {
     return view('welcome');
@@ -30,10 +31,7 @@ Route::middleware('authMiddleware')->group(function () {
 
 
         //Supplier
-        Route::resource('/suppliers', SupplierController::class);
-
-        // Route::get('/suppliers', [AdminController::class, 'index']);
-        // Route::get('/suppliers/create-edit', [AdminController::class, 'create-edit']);
+        Route::resource('/suppliers',SupplierController::class);
 
         # item
         Route::resource('items', ItemController::class);
