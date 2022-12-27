@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ItemLocationController;
 
 use App\Http\Controllers\Admin\{AdminController, AuthController, UserController, ItemController};
 
@@ -8,6 +9,7 @@ use App\Http\Controllers\Admin\{CategoryController, BrandController,SupplierCont
 Route::get('/', function () {
     return view('welcome');
 });
+
 
 
 // Login
@@ -22,7 +24,8 @@ Route::middleware('authMiddleware')->group(function () {
     Route::get('/sample', [AdminController::class, 'sampleIndex']);
     Route::get('/sample/create-edit', [AdminController::class, 'sampleCreateEdit']);
 
-    //Supplier
-    Route::resource('/suppliers',SupplierController::class);
+        //Supplier
+        Route::resource('/suppliers',SupplierController::class);
 
+});
 });
