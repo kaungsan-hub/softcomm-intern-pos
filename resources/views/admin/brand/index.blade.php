@@ -7,9 +7,8 @@
                     <div class="card">
                         <div class="card-body">
                             @if(session()->has('msg'))
-                            <div class="alert alert-success">
+                            <div class="alert alert-success"  role="alert">
                                 <span>{{session()->get('msg')}}</span>
-                                <button data-bs-dismiss="alert" class="btn btn-close float-end"></button>
                             </div>
                             @endif
                             <div class="d-flex justify-content-between align-items-center">
@@ -18,8 +17,11 @@
                                     <i class="la la-plus-circle"></i>
                                 </a>
                             </div>
-                            <form action="">
-                                <input type="text" class="form-control my-1 col-4 float-right" placeholder="search">
+                            <form action="{{url('/search')}}" method="get">
+                                <div>
+                                    @csrf
+                                <input type="search" name="search" class="form-control my-1 col-4 float-right" placeholder="search">
+                                </div>
                             </form>
                             <div class="table-responsive">
                                 <table class="table table-bordered table-hover">
@@ -38,7 +40,7 @@
                                             <td>{{$brand->id}}</td>
                                             <td>{{$brand->brand_code}}</td>
                                             <td>{{$brand->name}}</td>
-                                            <td>@mdo</td>
+                                            <td>{{$brand->created_by}}</td>
                                             <td>
                                                 <form action="{{url('admin/brands/'.$brand->id)}}" method="post">
                                                     @csrf

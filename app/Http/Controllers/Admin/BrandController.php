@@ -45,7 +45,7 @@ class BrandController extends Controller
         Brand::create([
             'brand_code' => $request->brandcode,
             'name' => $request->brandname,
-            'created_by' => 1
+            'created_by' => Auth()->user()->id
         ]);
 
         return redirect('/admin/brands')->with('msg','A Brand is created successfully');
@@ -92,7 +92,6 @@ class BrandController extends Controller
         $brand->update([
             'brand_code' => $request->brandcode,
             'name' => $request->brandname,
-            'created_by' => 1
         ]);
         
         return redirect('admin/brands')->with('msg','Brand updated successfully');

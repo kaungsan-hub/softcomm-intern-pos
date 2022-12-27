@@ -9,7 +9,6 @@
                             @if(session()->has('msg'))
                             <div class="alert alert-success">
                                 <span>{{session()->get('msg')}}</span>
-                                <button data-bs-dismiss="alert" class="btn btn-close float-end"></button>
                             </div>
                             @endif
                             <div class="d-flex justify-content-between align-items-center">
@@ -18,9 +17,11 @@
                                     <i class="la la-plus-circle"></i>
                                 </a>
                             </div>
-                            <form action="" method="get">
-                                @csrf
-                                <input type="text" name="searchdata" class="form-control my-1 col-4 float-right" placeholder="search">
+                            <form action="{{url('/admin/categories')}}" method="get">
+                                <div>
+                                    @csrf
+                                <input type="search" name="search" class="form-control my-1 col-4 float-right" placeholder="search">
+                                </div>
                             </form>
                             <div class="table-responsive">
                                 <table class="table table-bordered table-hover">
@@ -40,7 +41,7 @@
                                             <td>{{$category->id}}</td>
                                             <td>{{$category->name}}</td>
                                             <td>{{$category->description}}</td>
-                                            <td>@mdo</td>
+                                            <td>{{$category->created_by}}</td>
                                             <td>
                                                 <form action="{{url('admin/categories/'.$category->id)}}" method="post">
                                                     @csrf

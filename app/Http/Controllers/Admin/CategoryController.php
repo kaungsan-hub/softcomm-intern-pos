@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Models\Order;
 
 class CategoryController extends Controller
 {
@@ -44,7 +45,7 @@ class CategoryController extends Controller
         Category::create([
             'name' => $request->name,
             'description' => $request->description,
-            'created_by' => 1
+            'created_by' => Auth()->user()->id
         ]);
 
         return redirect('/admin/categories')->with('msg','A Brand is created successfully');
@@ -91,7 +92,6 @@ class CategoryController extends Controller
         $category->update([
             'name' => $request->name,
             'description' => $request->description,
-            'created_by' => 1
         ]);
         
         return redirect('admin/categories')->with('msg','Brand updated successfully');

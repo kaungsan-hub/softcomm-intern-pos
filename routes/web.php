@@ -45,5 +45,7 @@ Route::middleware('authMiddleware')->group(function () {
 
         //Supplier
         Route::resource('/suppliers', SupplierController::class);
+
+
     });
 });
