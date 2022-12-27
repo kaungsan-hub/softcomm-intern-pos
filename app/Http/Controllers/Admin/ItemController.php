@@ -14,11 +14,21 @@ class ItemController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     { 
+        if(isset($request->search)){
+            $brands= Brand::all();
+            $items = Item::query()
+                ->where('name', 'LIKE', "%{$request->search}%")
+                // ->orWhere('$brand->name', 'LIKE', "%{$request->q}%")
+                // ->orWhere('category', 'LIKE', "%{$request->q}%")
+                // ->orWhere('user', 'LIKE', "%{$request->q}%")
+                // ->orWhere('item_code', 'LIKE', "%{$request->q}%")
+                ->get();
+        }else{
         $items = Item::all();
         $brands = Brand::all();
-        
+        }
         return view('admin.item.index', compact('items','brands'));
     }
 
