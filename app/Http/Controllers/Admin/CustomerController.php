@@ -12,9 +12,22 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $customers = Customer::all();
+        if (isset($request->q)) {
+            $customers = Customer::query()
+                ->where('name', 'LIKE', "%{$request->q}%")
+                ->orWhere('contact_person', 'LIKE', "%{$request->q}%")
+                ->orWhere('phone', 'LIKE', "%{$request->q}%")
+                ->orWhere('address', 'LIKE', "%{$request->q}%")
+                ->orWhere('email', 'LIKE', "%{$request->q}%")
+                ->orWhere('region', 'LIKE', "%{$request->q}%")
+                ->orWhere('city', 'LIKE', "%{$request->q}%")
+                ->orWhere('remark', 'LIKE', "%{$request->q}%")
+                ->get();
+        } else {
+            $customers = Customer::all();
+        }
         return view('admin.customer.index',compact('customers'));
         //
     }
@@ -46,7 +59,7 @@ class CustomerController extends Controller
             'email' => 'required',
             'region' => 'required',
             'city' => 'required',
-            'remark' => 'required',
+            
         ]);
        
        Customer::create([
@@ -58,6 +71,7 @@ class CustomerController extends Controller
         'region' => $request->region,
         'city' => $request->city,
         'remark' => $request->remark,
+        'created_by'=> Auth()->user()->id
        ]);
         
        return redirect('/admin/customers')->with('msg','Customer has been created!!');
