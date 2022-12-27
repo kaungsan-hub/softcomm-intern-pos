@@ -110,6 +110,7 @@ class ItemController extends Controller
     {
         $warranty = $request->has('warranty') ? '1' : '0';
         $imei_status = $request->has ('imei_status') ? '1' : '0';
+        $created_by = Auth()->user()->id;
         $request->validate([
             'item_code'=>'required',
             'name'=>'required',
@@ -118,9 +119,13 @@ class ItemController extends Controller
         Item::find($id)->update([
             'item_code'=>$request->item_code,
             'name'=>$request->name,
+            'brand_id'=>$request->brand_id,
+            'category_id'=>$request->category_id,
+            'item_location_id'=>$request->item_location_id,
             'warranty'=>$warranty,
             'imei_status'=>$imei_status,
-            'remark'=>$request->remark
+            'remark'=>$request->remark,
+            'created_by'=>$created_by
         ]);
         session()->flash('msg','Update Successful');
         return redirect('admin/items');
