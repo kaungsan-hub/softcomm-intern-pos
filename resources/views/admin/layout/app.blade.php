@@ -151,7 +151,7 @@
                 <li class="nav-item"><a href="#"><i class="ft-box"></i><span class="menu-title"
                             data-i18n="">Supplier</span></a>
                 </li>
-                <li class="nav-item"><a href="#"><i class="ft-user"></i><span class="menu-title"
+                <li class="nav-item"><a href="{{ url('admin/customers') }}"><i class="ft-user"></i><span class="menu-title"
                             data-i18n="">Customer</span></a>
                 </li>
                 <li class="nav-item"><a href="{{ url('admin/sample') }}"><i class="ft-user"></i><span
