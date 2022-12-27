@@ -170,10 +170,6 @@
                         href="{{ url('admin/users') }}"><i class="ft-user"></i><span class="menu-title"
                             data-i18n="">User</span></a>
                 </li>
-                <li class="nav-item {{ Route::current()->uri == 'admin/users' ? 'active' : '' }}"><a
-                        href="{{ url('admin/users') }}"><i class="ft-user"></i><span class="menu-title"
-                            data-i18n="">User</span></a>
-                </li>
                 <li class="nav-item"><a href="{{ url('admin/sample') }}"><i class="ft-layout"></i><span
                             class="menu-title" data-i18n="">Sample Features</span></a>
                 </li>
