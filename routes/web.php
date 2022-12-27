@@ -1,25 +1,39 @@
 <?php
 
-use App\Http\Controllers\ItemsController;
-use App\Http\Controllers\Admin\AdminController; 
-use App\Http\Controllers\Admin\SupplierController;
+
+use App\Http\Controllers\Admin\{AdminController, AuthController, UserController, ItemController};
+
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::prefix('admin')->group(function(){
-    Route::get('/', [AdminController::class, 'index']);
 
-    Route::get('/sample', [AdminController::class, 'sampleIndex']);
-    Route::get('/sample/create-edit', [AdminController::class, 'sampleCreateEdit']);
+// Login
+Route::get('/login', [AuthController::class, 'showLogin']);
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout']);
 
-    # item
-    Route::resource('/items',ItemsController::class);
-    # Supplier
-    Route::resource('/suppliers',SupplierController::class);
+Route::middleware('authMiddleware')->group(function () {
+    Route::prefix('admin')->group(function () {
+        Route::get('/', [AdminController::class, 'index']);
 
-    // Route::get('/suppliers', [AdminController::class, 'index']);
-    // Route::get('/suppliers/create-edit', [AdminController::class, 'create-edit']);
+        // Sample
+        Route::get('/sample', [AdminController::class, 'sampleIndex']);
+        Route::get('/sample/create-edit', [AdminController::class, 'sampleCreateEdit']);
+
+        // User
+        Route::resource('/users', UserController::class);
+
+
+        //Supplier
+        Route::resource('/suppliers', SupplierController::class);
+
+        // Route::get('/suppliers', [AdminController::class, 'index']);
+        // Route::get('/suppliers/create-edit', [AdminController::class, 'create-edit']);
+
+        # item
+        Route::resource('items', ItemController::class);
+    });
 });
