@@ -7,8 +7,8 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center">
-                                <div>Item-Location Tables</div>
-                                <a href="{{ route('item-location.create') }}" class="btn btn-primary btn-sm" title="add new">
+                                <div>Counter Tables</div>
+                                <a href="{{ route('counters.create') }}" class="btn btn-primary btn-sm" title="add new">
                                     <i class="la la-plus-circle"></i>
                                 </a>
                             </div>
@@ -27,23 +27,21 @@
                                         <tr>
                                             <th>#</th>
                                             <th>Name</th>
-                                            <th>Description</th>
                                             <th>Created_by</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($itemsLocation as $itemLocation)
+                                        @foreach ($counters as $counter)
                                             <tr>
-                                                <th scope="row">{{$itemLocation->id}}</th>
-                                                <td class="text-nowrap">{{$itemLocation->name}}</td>
-                                                <td>{{$itemLocation->description}}</td>
-                                                <td>{{$itemLocation->created_by}}</td>
+                                                <th scope="row">{{$counter->id}}</th>
+                                                <td class="text-nowrap">{{$counter->name}}</td>
+                                                <td>{{$counter->created_by}}</td>
                                                 <td class="text-nowrap">
-                                                    <form action="{{route('item-location.destroy', $itemLocation->id)}}" method="post">
+                                                    <form action="{{route('counters.destroy', $counter->id)}}" method="post">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <a href="{{route('item-location.edit',$itemLocation->id)}}" class="btn btn-sm btn-warning"><i class="ft-edit"></i></a>
+                                                        <a href="{{route('counters.edit',$counter->id)}}" class="btn btn-sm btn-warning"><i class="ft-edit"></i></a>
                                                         <button class="btn btn-sm btn-danger"><i class="ft-trash"></i></button>
                                                     </form>
                                                 </td>
@@ -52,7 +50,7 @@
                                     </tbody>
                                 </table>
                                 <div class="">
-                                    {{ $itemsLocation->links() }}
+                                    {{ $counters->links() }}
                                 </div>
                             </div>
                         </div>
