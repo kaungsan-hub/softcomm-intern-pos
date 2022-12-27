@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\ItemLocationController;
+use App\Http\Controllers\Admin\ItemLocationController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
