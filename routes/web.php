@@ -4,8 +4,7 @@
 use App\Http\Controllers\Admin\{AdminController, AuthController, UserController, ItemController};
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\{CategoryController, BrandController};
-
+use App\Http\Controllers\Admin\{CategoryController, BrandController,SupplierController};
 Route::get('/', function () {
     return view('welcome');
 });
@@ -18,23 +17,12 @@ Route::post('/logout', [AuthController::class, 'logout']);
 
 Route::middleware('authMiddleware')->group(function () {
     Route::prefix('admin')->group(function () {
-        Route::get('/', [AdminController::class, 'index']);
+    Route::get('/', [AdminController::class, 'index']);
 
-        // Sample
-        Route::get('/sample', [AdminController::class, 'sampleIndex']);
-        Route::get('/sample/create-edit', [AdminController::class, 'sampleCreateEdit']);
-
-        // User
-        Route::resource('/users', UserController::class);
-
+    Route::get('/sample', [AdminController::class, 'sampleIndex']);
+    Route::get('/sample/create-edit', [AdminController::class, 'sampleCreateEdit']);
 
     //Supplier
     Route::resource('/suppliers',SupplierController::class);
-
-  
-
-
-
-    
 
 });
