@@ -100,7 +100,8 @@
                                 <div class="arrow_box_right"><a class="dropdown-item" href="#"><span
                                             class="avatar avatar-online"><img
                                                 src="{{ asset('admin-panel/theme-assets/images/portrait/small/avatar-s-19.png') }}"
-                                                alt="avatar"><span class="user-name text-bold-700 ml-1">{{Auth()->user()->name}}</span></span></a>
+                                                alt="avatar"><span
+                                                class="user-name text-bold-700 ml-1">{{ Auth()->user()->name }}</span></span></a>
                                     <div class="dropdown-divider"></div><a class="dropdown-item" href="#"><i
                                             class="ft-user"></i> Edit Profile</a><a class="dropdown-item"
                                         href="#"><i class="ft-mail"></i> My Inbox</a><a class="dropdown-item"
@@ -164,6 +165,10 @@
                 <li class="nav-item {{ Route::current()->uri == 'admin/counters' ? 'active' : '' }}"><a
                         href="{{ url('admin/counters') }}"><i class="ft-printer"></i><span class="menu-title"
                             data-i18n="">Counter</span></a>
+                </li>
+                <li class="nav-item {{ Route::current()->uri == 'admin/customers' ? 'active' : '' }}"><a
+                        href="{{ url('admin/customers') }}"><i class="ft-user"></i><span class="menu-title"
+                            data-i18n="">Customer</span></a>
                 </li>
                 <li class="nav-item {{ Route::current()->uri == 'admin/users' ? 'active' : '' }}"><a
                         href="{{ url('admin/users') }}"><i class="ft-user"></i><span class="menu-title"
