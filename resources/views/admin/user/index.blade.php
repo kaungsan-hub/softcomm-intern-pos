@@ -42,7 +42,8 @@
                                                     <form action="{{ url('admin/users/' . $user->id) }}" method="POST">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <a href="{{ url('admin/users/'. $user->id .'/edit') }}" class="btn btn-warning btn-sm">Edit</a>
+                                                        <a href="{{ url('admin/users/' . $user->id . '/edit') }}"
+                                                            class="btn btn-warning btn-sm">Edit</a>
                                                         <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                                                     </form>
                                                 </td>
