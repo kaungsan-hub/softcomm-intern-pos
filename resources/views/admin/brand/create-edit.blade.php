@@ -31,7 +31,7 @@
                                 <div class="form-body">
                                     <div class="form-group">
                                         <label for="donationinput1" class="">Brand Code</label>
-                                        <input type="text" id="donationinput1" class="form-control @error('brandcode') is-invalid @enderror" placeholder="Brand Code" name="brandcode" value="{{ old('brandcode', $brand->brand_code ?? '') }}" >
+                                        <input type="text" class="form-control @error('brandcode') is-invalid @enderror" placeholder="Brand Code" name="brandcode" value="{{ old('brandcode', $brand->brand_code ?? '') }}">
                                         @error('brandcode')
                                         <span class="invalid-feedback">{{$message}}</span>
                                         @enderror

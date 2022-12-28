@@ -1,13 +1,9 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
 use App\Http\Controllers\Controller;
-use App\Models\Counter;
 use Illuminate\Http\Request;
-
-
-class CounterController extends Controller
+class PurchaseController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +12,7 @@ class CounterController extends Controller
      */
     public function index()
     {
-        $counters = Counter::paginate(10);
-        return view('admin.counter.index',compact('counters'));
+        return view('admin.purchase.create-edit');
     }
 
     /**
@@ -27,7 +22,7 @@ class CounterController extends Controller
      */
     public function create()
     {
-        return view('admin.counter.create-edit');
+        //
     }
 
     /**
@@ -38,15 +33,7 @@ class CounterController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|unique:counters,name|min:3',
-        ]);
-
-        Counter::create([
-            'name' => $request->name,
-            'created_by'  => Auth()->user()->id
-        ]);
-        return redirect()->route('counters.index')->with('msg','Counter has been created successfully.');
+        //
     }
 
     /**
@@ -68,8 +55,7 @@ class CounterController extends Controller
      */
     public function edit($id)
     {
-        $counter = Counter::findOrFail($id);
-        return view('admin.counter.create-edit',compact('counter'));
+        //
     }
 
     /**
@@ -81,16 +67,7 @@ class CounterController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'name' => 'required',
-        ]);
-
-        Counter::findOrFail($id)->update([
-            'name' => $request->name,
-            'created_by'  => Auth()->user()->id
-        ]);
-        return redirect()->route('counters.index')->with('msg','Counter has been updated successfully.');
-
+        //
     }
 
     /**
@@ -101,7 +78,6 @@ class CounterController extends Controller
      */
     public function destroy($id)
     {
-        Counter::findOrFail($id)->delete();
-        return back()->with('msg','Counter has been deleted successfully');
+        //
     }
 }

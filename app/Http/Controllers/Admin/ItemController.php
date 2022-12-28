@@ -20,10 +20,10 @@ class ItemController extends Controller
             $brands= Brand::all();
             $items = Item::query()
                 ->where('name', 'LIKE', "%{$request->search}%")
-                // ->orWhere('$brand->name', 'LIKE', "%{$request->q}%")
-                // ->orWhere('category', 'LIKE', "%{$request->q}%")
-                // ->orWhere('user', 'LIKE', "%{$request->q}%")
-                // ->orWhere('item_code', 'LIKE', "%{$request->q}%")
+                // ->orWhere('$brand->name', 'LIKE', "%{$request->search}%")
+                // ->orWhere('category', 'LIKE', "%{$request->search}%")
+                // ->orWhere('user', 'LIKE', "%{$request->search}%")
+                // ->orWhere('item_code', 'LIKE', "%{$request->search}%")
                 ->get();
         }else{
         $items = Item::all();
@@ -60,12 +60,14 @@ class ItemController extends Controller
         $item_location_id = $request->item_location_id;
         $warranty = $request->has('warranty') ? '1' : '0';
         $imei_status = $request->has ('imei_status') ? '1' : '0';
+        $reorder_qty = $request->reorder_qty;
         $remark = $request->remark;
         $created_by = Auth()->user()->id;
 
         $request->validate([
             'item_code'=>'required',
             'name'=>'required',
+            'reorder_qty'=>'required',
             'remark'=>'required'
         ]);
 
@@ -77,6 +79,7 @@ class ItemController extends Controller
             'item_location_id'=>$item_location_id,
             'warranty'=>$warranty,
             'imei_status'=>$imei_status,
+            'reorder_qty'=>$reorder_qty,
             'remark'=>$remark,
             'created_by'=>$created_by
         ]);
@@ -124,6 +127,7 @@ class ItemController extends Controller
         $request->validate([
             'item_code'=>'required',
             'name'=>'required',
+            'reorder_qty'=>'required',
             'remark'=>'required'
         ]);
         Item::find($id)->update([
@@ -134,6 +138,7 @@ class ItemController extends Controller
             'item_location_id'=>$request->item_location_id,
             'warranty'=>$warranty,
             'imei_status'=>$imei_status,
+            'reorder_qty'=>$request->reorder_qty,
             'remark'=>$request->remark,
             'created_by'=>$created_by
         ]);

@@ -17,9 +17,11 @@
                             </form>
                             <div class="table-responsive">
                                 @if (session()->has('msg'))
-                                    <div class="alert alert-info">
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
                                         <span>{{session()->get('msg')}}</span>
-                                        {{-- <button data-bs-dismiss='alert' class="btn btn-close float-end"></button> --}}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
                                     </div>
                                 @endif
                                 <table class="table table-bordered table-hover">
