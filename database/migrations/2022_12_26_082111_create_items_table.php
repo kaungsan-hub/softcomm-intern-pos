@@ -24,7 +24,7 @@ return new class extends Migration
             $table->boolean('imei_status');
             $table->integer('reorder_qty');
             $table->text('remark');
-            $table->integer('created_by');
+            $table->integer('created_by');  
             $table->softDeletes();
             $table->timestamps();
         });

@@ -8,7 +8,7 @@
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div>Sample Tables</div>
-                                <a href="{{ url('admin/items/create') }}" class="btn btn-primary btn-sm" title="add new">
+                                <a href="{{ route('openings.create') }}" class="btn btn-primary btn-sm" title="add new">
                                     <i class="la la-plus-circle"></i>
                                 </a>
                             </div>
@@ -24,18 +24,13 @@
                                 <table class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
-                                            <th>Item Code</th>
-                                            <th>Name</th>
-                                            <th>Brand</th>
-                                            <th>Category</th>
-                                            <th>Warranty</th>
-                                            <th>IMEI</th>
+                                            <th>#</th>
                                             <th>Remark</th>
-                                            <th>User</th>
+                                            <th>Opening_Date</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    {{-- <tbody>
                                         @foreach ($items as $item)
                                         <tr>
                                             <td>{{$item->item_code}}</td>
@@ -53,8 +48,8 @@
                                                 </form>
                                             </td>
                                         </tr>
-                                        @endforeach
-                                        
+                                        @endforeach --}}
+
                                     </tbody>
                                 </table>
                             </div>
