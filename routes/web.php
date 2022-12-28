@@ -5,7 +5,7 @@ use App\Http\Controllers\Admin\ItemLocationController;
 use App\Http\Controllers\Admin\{AdminController, AuthController, CounterController, CustomerController, UserController, ItemController};
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\{CategoryController, BrandController, SupplierController};
+use App\Http\Controllers\Admin\{CategoryController, BrandController, SupplierController, OpeningController};
 
 Route::get('/', function () {
     return view('welcome');
@@ -57,6 +57,8 @@ Route::middleware('authMiddleware')->group(function () {
         //Supplier
         Route::resource('/suppliers', SupplierController::class);
 
+        #opening
+        Route::resource('/openings', OpeningController::class);
 
     });
 });
