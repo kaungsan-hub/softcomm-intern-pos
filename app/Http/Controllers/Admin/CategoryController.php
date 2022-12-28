@@ -13,8 +13,10 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index(Request $request)
     {
+
         if (isset($request->q)) {
             $categories = Category::query()
                 ->where('name', 'LIKE', "%{$request->q}%")

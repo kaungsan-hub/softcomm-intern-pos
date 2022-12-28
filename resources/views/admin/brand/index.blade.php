@@ -9,6 +9,7 @@
                             @if(session()->has('msg'))
                             <div class="alert alert-success"  role="alert">
                                 <span>{{session()->get('msg')}}</span>
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
                             </div>
                             @endif
                             <div class="d-flex justify-content-between align-items-center">
