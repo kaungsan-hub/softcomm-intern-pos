@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
+use App\Models\OpeningDetail;
 use Illuminate\Http\Request;
 
 class OpeningController extends Controller
@@ -13,7 +14,8 @@ class OpeningController extends Controller
      */
     public function index()
     {
-        return view('admin.opening.create-edit');
+        $openingDetail = OpeningDetail::all();
+        return view('admin.opening.index',compact('openingDetail'));
     }
 
     /**
@@ -23,7 +25,7 @@ class OpeningController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.opening.create-edit');
     }
 
     /**
