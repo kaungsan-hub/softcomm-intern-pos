@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
-
-use App\Models\Sale_Detail;
+namespace App\Http\Controllers\Admin;
+use App\Http\Controllers\Controller;
+use App\Models\SaleDetail;
 use Illuminate\Http\Request;
 
 class SaleDetailController extends Controller
@@ -44,7 +44,7 @@ class SaleDetailController extends Controller
      * @param  \App\Models\Sale_Detail  $sale_Detail
      * @return \Illuminate\Http\Response
      */
-    public function show(Sale_Detail $sale_Detail)
+    public function show(SaleDetail $sale_Detail)
     {
         //
     }
@@ -55,7 +55,7 @@ class SaleDetailController extends Controller
      * @param  \App\Models\Sale_Detail  $sale_Detail
      * @return \Illuminate\Http\Response
      */
-    public function edit(Sale_Detail $sale_Detail)
+    public function edit(SaleDetail $sale_Detail)
     {
         //
     }
@@ -67,7 +67,7 @@ class SaleDetailController extends Controller
      * @param  \App\Models\Sale_Detail  $sale_Detail
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Sale_Detail $sale_Detail)
+    public function update(Request $request, SaleDetail $sale_Detail)
     {
         //
     }
@@ -78,7 +78,7 @@ class SaleDetailController extends Controller
      * @param  \App\Models\Sale_Detail  $sale_Detail
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Sale_Detail $sale_Detail)
+    public function destroy(SaleDetail $sale_Detail)
     {
         //
     }

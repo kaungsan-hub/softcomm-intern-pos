@@ -8,7 +8,7 @@
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div>Sample Tables</div>
-                                <a href="{{ route('openings.index') }}" class="btn btn-primary btn-sm" title="add new">
+                                <a href="{{ route('openings.create') }}" class="btn btn-primary btn-sm" title="add new">
                                     <i class="la la-plus-circle"></i>
                                 </a>
                             </div>
@@ -24,13 +24,13 @@
                                 <table class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
-                                            <th></th>
+                                            <th>#</th>
                                             <th>Remark</th>
                                             <th>Opening_Date</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    {{-- <tbody>
                                         @foreach ($items as $item)
                                         <tr>
                                             <td>{{$item->item_code}}</td>
@@ -48,7 +48,7 @@
                                                 </form>
                                             </td>
                                         </tr>
-                                        @endforeach
+                                        @endforeach --}}
 
                                     </tbody>
                                 </table>

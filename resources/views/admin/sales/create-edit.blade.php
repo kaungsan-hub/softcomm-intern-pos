@@ -1,42 +1,105 @@
 @extends('admin.layout.app')
 @section('content')
-  <div class="content-wrapper">
+    <script>
+        var NewItemDivCode = "<div class='row' id='addItemDiv'>" +
+                                "<div class='col-8'>"+
+                                    "<div class='form-group'>"+
+                                        "<label>Item</label>"+
+                                        "<select class='form-control @error('item') is-invalid @enderror'"+
+                                            "aria-label='Default select example' name='item'>"+
+                                            "<option disabled selected>Please select item</option>"+
+                                            "@foreach ($items as $item)"+
+                                                "<option value='{{ $item->item_code }}''"+
+                                                    "{{ old('item') == $item ? 'selected' : '' }}>"+
+                                                    "{{ $item->name }}"+
+                                                "</option>"+
+                                            "@endforeach"+
+                                        "</select>"+
+                                    "</div>"+
+                                "</div>"+
+                                "<div class='col-3'>"+
+                                    "<div class='form-group'>"+
+                                        "<label>Quantity</label>"+
+                                        "<input type='text' class='form-control' placeholder='Quantity'"+
+                                            "name='quantities[]'>"+
+                                    "</div>"+
+                                "</div>"+
+                                "<div class='col-1'>" +
+                                        "<label>Remove</label>" +
+                                        "<button class='btn btn-danger btn-sm' onclick='removeNewItemDiv(this)' type='button' class='removeBtn'>" +
+                                            "<i class='la la-times'></i>" +
+                                        "</button>" +
+                                "</div>" +
+                            "</div>";
+                                            
+        function addNewItemDiv() {
+            $('#NewItemDiv').append(NewItemDivCode);
+        }
+
+        function removeNewItemDiv(thisButton) {
+            $(thisButton).parent().parent().remove();
+        }
+    </script>
+    <div class="content-wrapper">
         <div class="content-body">
             <div class="row my-1">
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center my-1">
-                                <div>Sample Create or Edit Form</div>
+                                <div>Sale Form</div>
                                 <a href="{{ url('admin/sample') }}" class="btn btn-primary btn-sm" title="back">
                                     <i class="la la-chevron-circle-left"></i>
                                 </a>
                             </div>
                             <form class="form">
-                              
                                 <div class="form-body">
                                     <div class="form-group">
-                                        <label for="donationinput1" class="">First Name</label>
-                                        <input type="text" id="donationinput1" class="form-control" placeholder="First Name" name="fname">
+                                        <label>Customer ID</label>
+                                        <input type="text" class="form-control" placeholder="Customer ID"
+                                            name="customer_id">
                                     </div>
-                                    <div class="form-group">
-                                        <label for="donationinput2" class="">Last Name</label>
-                                        <input type="text" id="donationinput2" class="form-control" placeholder="Last Name" name="lanme">
+                                    <hr>
+                                    <div class="d-flex justify-content-between align-items-center my-1">
+                                        <div>Add items for sale</div>
+                                        <button class="btn btn-primary btn-sm" id="AddItem" type="button" onclick="addNewItemDiv()">
+                                            <i class="la la-plus"> Add item</i>
+                                        </button>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="donationinput3" class="">E-mail</label>
-                                        <input type="email" id="donationinput3" class="form-control" placeholder="E-mail" name="email">
+                                    <div id="NewItemDiv">
+                                        {{-- <div class='row'>
+                                        <div class='col-8'>
+                                            <div class='form-group'>
+                                                <label>Item</label>
+                                                <select class='form-control @error('item') is-invalid @enderror'
+                                                    aria-label='Default select example' name='item'>
+                                                    <option disabled selected>Please select item</option>
+                                                    @foreach ($items as $item)
+                                                        <option value='{{ $item->item_code }}'
+                                                            {{ old('item') == $item ? 'selected' : '' }}>
+                                                            {{ $item->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class='col-3'>
+                                            <div class='form-group'>
+                                                <label>Quantity</label>
+                                                <input type='text' class='form-control' placeholder='Quantity'
+                                                    name='quantities[]'>
+                                            </div>
+                                        </div>
+                                        <div class='col-1'>
+                                                <label>Remove</label>
+                                                <button class='btn btn-danger btn-sm' onclick='removeNewItemDiv()''>
+                                                    <i class='la la-times'></i>
+                                                </button>
+                                        </div>
+                                    </div> --}}
                                     </div>
-    
-                                    <div class="form-group">
-                                        <label for="donationinput4" class="">Contact Number</label>
-                                        <input type="text" id="donationinput4" class="form-control" placeholder="Phone" name="phone">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="donationinput7" class="">Message</label>
-                                        <textarea id="donationinput7" rows="5" class="form-control square" name="message" placeholder="message"></textarea>
-                                    </div>    
                                 </div>
+                                <p><b>Total Amount: </b><span>0 Ks</span></p>
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </form>
                         </div>
@@ -44,5 +107,5 @@
                 </div>
             </div>
         </div>
-  </div>
+    </div>
 @endsection
