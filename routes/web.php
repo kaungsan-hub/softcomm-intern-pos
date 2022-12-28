@@ -13,10 +13,13 @@ Route::get('/', function () {
 
 
 
+
+
 // Login
 Route::get('/login', [AuthController::class, 'showLogin']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout']);
+
 
 Route::middleware('authMiddleware')->group(function () {
     Route::prefix('admin')->group(function () {
