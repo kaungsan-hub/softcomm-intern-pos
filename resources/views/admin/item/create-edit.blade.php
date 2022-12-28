@@ -61,6 +61,10 @@
                                         </div> 
                                     </div>
                                     <div class="form-group">
+                                        <label for="donationinput2" class="">Reorder Quantity</label>
+                                        <input type="number" id="donationinput2" value="{{old('reorder_qty') ?? $items->reorder_qty}}" class="form-control @error('reorder_qty') is-invalid @enderror" placeholder="Reorder Quantity" name="reorder_qty">
+                                    </div>
+                                    <div class="form-group">
                                         <label for="donationinput7" class="">Remark</label>
                                         <textarea id="donationinput7" rows="4" class="form-control square @error('remark') is-invalid @enderror" name="remark" placeholder="Remark">{{old('remark') ?? $items->remark}}</textarea>
                                     </div>    
@@ -112,6 +116,10 @@
                                             <input class="form-check-input" type="checkbox" name="imei_status" value="1" id="flexCheckChecked" checked>
                                             <label class="form-check-label" for="flexCheckChecked">IMEI Status</label>
                                         </div> 
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="order" class="">Reorder Quantity</label>
+                                        <input type="number" id="order" class="form-control @error('reorder_qty') is-invalid @enderror" name="reorder_qty">
                                     </div>
                                     <div class="form-group">
                                         <label for="donationinput7" class="">Remark</label>

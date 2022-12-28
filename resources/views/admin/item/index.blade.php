@@ -30,6 +30,7 @@
                                             <th>Category</th>
                                             <th>Warranty</th>
                                             <th>IMEI</th>
+                                            <th>Reorder</th>
                                             <th>Remark</th>
                                             <th>User</th>
                                             <th>Action</th>
@@ -44,6 +45,7 @@
                                             <td>{{$item->categories->name}}</td>
                                             <td>{{$item->warranty}}</td>
                                             <td>{{$item->imei_status}}</td>
+                                            <td>{{$item->reorder_qty}}</td>
                                             <td>{{$item->remark}}</td>
                                             <td>{{$item->users->name}}</td>
                                             <td>
