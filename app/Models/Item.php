@@ -11,7 +11,7 @@ class Item extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    protected $fillable = ['item_code','name','brand_id','category_id','item_location_id','warranty','imei_status','remark','created_by'];
+    protected $fillable = ['item_code','name','brand_id','category_id','item_location_id','warranty','imei_status','reorder_qty','remark','created_by'];
 
     public function brands(){
         return $this->belongsTo(Brand::class, 'brand_id');
