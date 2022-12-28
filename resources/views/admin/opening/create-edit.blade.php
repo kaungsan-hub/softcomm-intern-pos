@@ -35,8 +35,29 @@
                                             </div>
                                         </div>
                                         <form action="">
-                                            <button type="submit" class="btn btn-secondary btn-sm float-right">Add</button>
+                                            <button id="addbtn" type="submit" class="btn btn-info btn-sm float-right">+ Add</button>
                                         </form>
+                                        
+                                            <div class="row mt-5">
+                                            <div class="form-group">
+                                                {{-- <div class="input-group">
+                                                        <div class="col-6">
+                                                            <label for="donationinput1" class="">Item</label>
+                                                        <input type="text" class="form-control disabled">
+                                                        </div>
+                                                        <div class="col-4">
+                                                            <label for="donationinput1" class="">Quantity</label>
+                                                            <input type="text" class="form-control ">
+                                                            
+                                                        </div>
+                                                        <div class="col-2">
+                                                        <label for="donationinput1" class="">Remove</label>
+                                                        <button class="btn btn-danger">-</button>
+                                                        </div>
+                                                </div> --}}
+                                            </div>
+                                            </div>
+                                        
                                         <br>
                                         <label for="donationinput1" class="">Remark</label>
                                         <input type="text" id="donationinput1" value="" class="form-control @error('name') is-invalid @enderror" placeholder="Remark" name="name">
@@ -56,3 +77,4 @@
         </div>
   </div>
 @endsection
+

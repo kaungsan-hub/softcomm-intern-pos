@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Admin\ItemLocationController;
 
-use App\Http\Controllers\Admin\{AdminController, AuthController, CounterController, CustomerController, UserController, ItemController, SaleController, CategoryController, BrandController, SupplierController};
+use App\Http\Controllers\Admin\{AdminController, AuthController, CounterController, CustomerController, UserController, ItemController, SaleController, CategoryController, BrandController, SupplierController,OpeningController};
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
