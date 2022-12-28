@@ -128,36 +128,6 @@
                                         </button>
                                     </div>
                                     <div id="NewItemDiv">
-                                        {{-- <div class='row'>
-                                        <div class='col-8'>
-                                            <div class='form-group'>
-                                                <label>Item</label>
-                                                <select class='form-control @error('item') is-invalid @enderror'
-                                                    aria-label='Default select example' name='item'>
-                                                    <option disabled selected>Please select item</option>
-                                                    @foreach ($items as $item)
-                                                        <option value='{{ $item->item_code }}'
-                                                            {{ old('item') == $item ? 'selected' : '' }}>
-                                                            {{ $item->name }}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class='col-3'>
-                                            <div class='form-group'>
-                                                <label>Quantity</label>
-                                                <input type='text' class='form-control' placeholder='Quantity'
-                                                    name='quantities[]'>
-                                            </div>
-                                        </div>
-                                        <div class='col-1'>
-                                                <label>Remove</label>
-                                                <button class='btn btn-danger btn-sm' onclick='removeNewItemDiv()''>
-                                                    <i class='la la-times'></i>
-                                                </button>
-                                        </div>
-                                    </div> --}}
                                     </div>
                                 </div>
                                 <p><b>Total Amount: </b><span id="totalAmount">0 Ks</span></p>
