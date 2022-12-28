@@ -4,7 +4,7 @@ use App\Http\Controllers\Admin\ItemLocationController;
 
 use App\Http\Controllers\Admin\{AdminController, AuthController, CounterController, CustomerController, UserController, ItemController, SaleController, CategoryController, BrandController, OpeningController, SupplierController};
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\{CategoryController, BrandController, SupplierController};
+
 use App\Http\Controllers\Admin\SetPriceController;
 use App\Http\Controllers\Admin\{PurchaseController, PurchaseDetailController};
 
@@ -70,9 +70,6 @@ Route::middleware('authMiddleware')->group(function () {
 
         // Sales
         Route::resource('/sales', SaleController::class);
-
-
-
 
         });
 
