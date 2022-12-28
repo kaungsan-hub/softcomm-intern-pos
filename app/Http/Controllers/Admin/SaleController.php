@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
+use App\Models\Item;
 use App\Models\Sale;
 use Illuminate\Http\Request;
 
@@ -24,7 +25,8 @@ class SaleController extends Controller
      */
     public function create()
     {
-        //
+        $items = Item::all();
+        return view('admin.sales.create-edit', compact('items'));
     }
 
     /**
