@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('item', function (Blueprint $table) {
+        Schema::create('items', function (Blueprint $table) {
             $table->id();
             $table->string('item_code');
             $table->string('name');
@@ -22,6 +22,7 @@ return new class extends Migration
             $table->integer('item_location_id');
             $table->boolean('warranty');
             $table->boolean('imei_status');
+            $table->integer('reorder_qty');
             $table->text('remark');
             $table->integer('created_by');
             $table->softDeletes();

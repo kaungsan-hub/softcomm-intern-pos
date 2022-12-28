@@ -75,30 +75,20 @@
                                                 <td>{{ $supplier->address }}</td>
                                                 <td>{{ $supplier->phone }}</td>
                                                 <td>{{ $supplier->contact_person }}</td>
-                                                <td>{{ $supplier->created_by }}</td>
+                                                <td>{{ $supplier->user->name }}</td>
                                                 <td>{{ $supplier->created_at }}</td>
                                                 <td>{{ $supplier->updated_at }}</td>
                                                 <td>{{ $supplier->deleted_at }}</td>
-                                                <td>
-                                                    <form action="{{ url('admin/suppliers/' . $supplier->id) }}"
-                                                        method="post">
+                                                <td class="text-nowrap">
+                                                 
+                                                    <form action="{{ url('admin/suppliers/' . $supplier->id) }}" method="post">
                                                         @csrf
                                                         @method('delete')
-
-                                                        <table>
-                                                            <tr>
-                                                                <td>
-                                                                    <a href="{{ url('admin/suppliers/' . $supplier->id . '/edit') }}"
-                                                                        class="btn btn-info btn-sm">Edit</a>
-                                                                </td>
-                                                                <td>
-                                                                    <button class="btn btn-danger btn-sm"
-                                                                        onclick="return confirm('Are you sure to delete?')">Delete</button>
-                                                                </td>
-                                                            </tr>
-                                                        </table>
-
+                                                        <a href="{{ url('admin/suppliers/' . $supplier->id . '/edit') }}" class="btn btn-info btn-sm"><i class="ft-edit"></i></a> 
+                                                            
+                                                            <button class="btn btn-danger btn-sm" onclick="return confirm('Are you sure to delete?')"><i class="ft-trash"></i></button> 
                                                     </form>
+
                                                 </td>
                                             </tr>
                                         @endforeach

@@ -14,9 +14,11 @@ class Supplier extends Model
     use SoftDeletes;
     protected $fillable = ['name','address','phone','contact_person','created_by'];
 
-    // public function posts()
-    // {
-    //     return $this->hasMany(Post::class,'category_id');
-    // }
+
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
 
 }

@@ -7,18 +7,19 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center">
-                                <div>Sample Tables</div>
+                                <div>Customer Table</div>
                                 <a href="{{ url('admin/customers/create') }}" class="btn btn-primary btn-sm" title="add new">
                                     <i class="la la-plus-circle"></i>
                                 </a>
                             </div>
                             @if(session() -> has('msg'))
-                            <div class=" alert alert-success">
+                            <div class=" alert alert-success alert-dismissable fade show">
                                 <span>{{ session()->get('msg')}}</span>
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
                             </div>
                             @endif 
                             <form action="">
-                                <input type="text" class="form-control my-1 col-4 float-right" placeholder="search">
+                                <input type="text" class="form-control my-1 col-4 float-right" placeholder="search" name="q">
                             </form>
                             <div class="table-responsive">
                                 <table class="table table-bordered table-hover">
@@ -49,7 +50,8 @@
                                             <td class="text-nowrap">{{$c->region}}</td>
                                             <td class="text-nowrap">{{$c->city}}</td>
                                             <td class="text-nowrap">{{$c->remark}}</td>
-                                            <td class="text-nowrap">{{$c->created_by}}</td>
+                                            <td class="text-nowrap">{{$c->user->name}}</td>
+                                            
                                             <td class="text-nowrap">
                                                 <form action="{{url('admin/customers/' .$c->id) }}" method="post"> 
                                                     @method('delete')
