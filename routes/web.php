@@ -2,9 +2,8 @@
 
 use App\Http\Controllers\Admin\ItemLocationController;
 
-use App\Http\Controllers\Admin\{AdminController, AuthController, CounterController, CustomerController, UserController, ItemController, SaleController, CategoryController, BrandController, SupplierController};
+use App\Http\Controllers\Admin\{AdminController, OpeningController, AuthController, CategoryController, BrandController, SupplierController, PurchaseController, PurchaseDetailController, CounterController, CustomerController, UserController, ItemController, SaleController, CategoryController, BrandController, SupplierController};
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\{CategoryController, BrandController, SupplierController, PurchaseController, PurchaseDetailController};
 
 Route::get('/', function () {
     return view('welcome');
@@ -56,13 +55,15 @@ Route::middleware('authMiddleware')->group(function () {
         Route::resource('/suppliers', SupplierController::class);
 
         #purchase
-    Route::resource('/purchases', PurchaseController::class);
-    Route::resource('/purchase-details', PurchaseDetailController::class);
-    }); 
+        Route::resource('/purchases', PurchaseController::class);
+        Route::resource('/purchase-details', PurchaseDetailController::class);
+
         #opening
         Route::resource('/openings', OpeningController::class);
 
         // Sales
         Route::resource('/sales', SaleController::class);
+
+        });
+
     });
-});

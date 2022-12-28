@@ -44,7 +44,7 @@ class CounterController extends Controller
 
         Counter::create([
             'name' => $request->name,
-            'created_by'  => 1
+            'created_by'  => Auth()->user()->id
         ]);
         return redirect()->route('counters.index')->with('msg','Counter has been created successfully.');
     }
@@ -87,7 +87,7 @@ class CounterController extends Controller
 
         Counter::findOrFail($id)->update([
             'name' => $request->name,
-            'created_by'  => 1
+            'created_by'  => Auth()->user()->id
         ]);
         return redirect()->route('counters.index')->with('msg','Counter has been updated successfully.');
 
