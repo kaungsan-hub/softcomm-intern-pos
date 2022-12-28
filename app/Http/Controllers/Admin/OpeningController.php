@@ -1,12 +1,10 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
 use App\Http\Controllers\Controller;
-use App\Models\ItemLocation;
 use Illuminate\Http\Request;
 
-class ItemLocationController extends Controller
+class OpeningController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +13,7 @@ class ItemLocationController extends Controller
      */
     public function index()
     {
-        $itemsLocation = ItemLocation::paginate(10);
-        return view('admin.item-location.index',compact('itemsLocation'));
+        return view('admin.opening.create-edit');
     }
 
     /**
@@ -26,7 +23,7 @@ class ItemLocationController extends Controller
      */
     public function create()
     {
-        return view('admin.item-location.create-edit');
+        //
     }
 
     /**
@@ -37,16 +34,7 @@ class ItemLocationController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|unique:item_locations,name|min:3',
-            'description' => 'required|min:3'
-        ]);
-
-        ItemLocation::create([
-            'name' => $request->name,
-            'description' => $request->description,
-        ]);
-        return redirect()->route('item-location.index')->with('msg','Item-Location has been created successfully.');
+        //
     }
 
     /**
@@ -68,8 +56,7 @@ class ItemLocationController extends Controller
      */
     public function edit($id)
     {
-        $itemLocation = ItemLocation::findOrFail($id);
-        return view('admin.item-location.create-edit',compact('itemLocation'));
+        //
     }
 
     /**
@@ -81,17 +68,7 @@ class ItemLocationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'name' => 'required',
-            'description' => 'required'
-        ]);
-
-        ItemLocation::findOrFail($id)->update([
-            'name' => $request->name,
-            'description' => $request->description,
-        ]);
-        return redirect()->route('item-location.index')->with('msg','Item-Location has been updated successfully.');
-
+        //
     }
 
     /**
@@ -102,7 +79,6 @@ class ItemLocationController extends Controller
      */
     public function destroy($id)
     {
-        ItemLocation::findOrFail($id)->delete();
-        return back()->with('msg','Item-Location has been deleted successfully');
+        //
     }
 }

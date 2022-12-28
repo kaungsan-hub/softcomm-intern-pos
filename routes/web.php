@@ -2,10 +2,12 @@
 
 use App\Http\Controllers\Admin\ItemLocationController;
 
-use App\Http\Controllers\Admin\{AdminController, AuthController, CounterController, CustomerController, UserController, ItemController};
-
+use App\Http\Controllers\Admin\{AdminController, AuthController, CounterController, CustomerController, UserController, ItemController, SaleController, CategoryController, BrandController, SupplierController};
 use Illuminate\Support\Facades\Route;
+<<<<<<< HEAD
 use App\Http\Controllers\Admin\{CategoryController, BrandController, SupplierController, PurchaseController, PurchaseDetailController};
+=======
+>>>>>>> b0f63bc11bff2bdd30bcac0bde274fa51f346ed4
 
 Route::get('/', function () {
     return view('welcome');
@@ -20,7 +22,9 @@ Route::post('/logout', [AuthController::class, 'logout']);
 
 Route::middleware('authMiddleware')->group(function () {
     Route::prefix('admin')->group(function () {
+        // Main
         Route::get('/', [AdminController::class, 'index']);
+
         // Sample
         Route::get('/sample', [AdminController::class, 'sampleIndex']);
         Route::get('/sample/create-edit', [AdminController::class, 'sampleCreateEdit']);
@@ -28,38 +32,43 @@ Route::middleware('authMiddleware')->group(function () {
         // User
         Route::resource('/users', UserController::class);
 
+        // Customer
+        Route::resource('/customers', CustomerController::class);
 
-    //Customer
-    Route::resource('/customers',CustomerController::class);
-
-    //Supplier
-        Route::resource('/suppliers',SupplierController::class);
-        //Supplier
+        // Supplier
         Route::resource('/suppliers', SupplierController::class);
-
+        Route::resource('/suppliers', SupplierController::class);
         Route::get('/suppliers/autocomplete-search', [SupplierController::class, 'autocompleteSearch']);
 
-        # item
+        // Item
         Route::resource('items', ItemController::class);
 
-        # item-location
-
+        // Item-location
         Route::resource('/item-location', ItemLocationController::class);
 
-        # category
+        // Category
         Route::resource('/categories', CategoryController::class);
 
-        # counter
+        // Counter
         Route::resource('/counters', CounterController::class);
 
-        # brand
+        // Brand
         Route::resource('/brands', BrandController::class);
 
         //Supplier
         Route::resource('/suppliers', SupplierController::class);
 
+<<<<<<< HEAD
         #purchase
     Route::resource('/purchases', PurchaseController::class);
     Route::resource('/purchase-details', PurchaseDetailController::class);
     }); 
+=======
+        #opening
+        Route::resource('/openings', OpeningController::class);
+
+        // Sales
+        Route::resource('/sales', SaleController::class);
+    });
+>>>>>>> b0f63bc11bff2bdd30bcac0bde274fa51f346ed4
 });

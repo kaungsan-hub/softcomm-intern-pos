@@ -36,7 +36,7 @@
                                             <tr>
                                                 <th scope="row">{{$counter->id}}</th>
                                                 <td class="text-nowrap">{{$counter->name}}</td>
-                                                <td>{{$counter->created_by}}</td>
+                                                <td>{{$counter->user->name}}</td>
                                                 <td class="text-nowrap">
                                                     <form action="{{route('counters.destroy', $counter->id)}}" method="post">
                                                         @csrf

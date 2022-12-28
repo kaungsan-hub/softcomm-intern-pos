@@ -174,6 +174,10 @@
                         href="{{ url('admin/users') }}"><i class="ft-user"></i><span class="menu-title"
                             data-i18n="">User</span></a>
                 </li>
+                {{-- transaction tabs --}}
+                <li class="nav-item {{ Route::current()->uri == 'admin/sales' ? 'active' : '' }}"><a href="{{ url('admin/sales') }}"><i class="ft-check-circle"></i><span
+                            class="menu-title" data-i18n="">Sale</span></a>
+                </li>
                 <li class="nav-item"><a href="{{ url('admin/sample') }}"><i class="ft-layout"></i><span
                             class="menu-title" data-i18n="">Sample Features</span></a>
                 </li>
