@@ -8,7 +8,7 @@
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div>Sales Table</div>
-                                <a href="{{ url('admin/sample/create-edit') }}" class="btn btn-primary btn-sm" title="add new">
+                                <a href="{{ url('admin/sales/create') }}" class="btn btn-primary btn-sm" title="add new">
                                     <i class="la la-plus-circle"></i>
                                 </a>
                             </div>
