@@ -13,9 +13,19 @@ class ItemLocationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $itemsLocation = ItemLocation::paginate(10);
+        // if (isset($request->search)) {
+        //     $itemsLocation = ItemLocation::query()
+        //         ->where('name', 'LIKE', "%{$request->search}%")
+        //         // ->orWhere('id', 'LIKE', "%{$request->search}%")
+        //         // ->orWhere('description', 'LIKE', "%{$request->search}%")
+        //         // ->orWhere('created_by', 'LIKE', "%{$request->search}%")
+        //         ->get();
+        // } else {
+            $itemsLocation = ItemLocation::paginate(10);
+        // }
+
         return view('admin.item-location.index',compact('itemsLocation'));
     }
 
@@ -45,6 +55,7 @@ class ItemLocationController extends Controller
         ItemLocation::create([
             'name' => $request->name,
             'description' => $request->description,
+            'created_by'  => Auth()->user()->id
         ]);
         return redirect()->route('item-location.index')->with('msg','Item-Location has been created successfully.');
     }
@@ -89,6 +100,7 @@ class ItemLocationController extends Controller
         ItemLocation::findOrFail($id)->update([
             'name' => $request->name,
             'description' => $request->description,
+            'created_by'  => Auth()->user()->id
         ]);
         return redirect()->route('item-location.index')->with('msg','Item-Location has been updated successfully.');
 
