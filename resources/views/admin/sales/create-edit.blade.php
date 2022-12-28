@@ -96,8 +96,8 @@
 
         function getPreviousSelectedItemPrice(thisSelect) {
             // get and save previous item price when user click on dropdown
-            if ($(thisSelect).find(':selected').data('price') === 'undefined') {
-                previousSelectedItemPrice = ($(thisSelect).find(':selected').data('price'));
+            if (!($(thisSelect).find(':selected').data('price') === undefined)) {
+                previousSelectedItemPrice = $(thisSelect).find(':selected').data('price');
             }
         }
     </script>
