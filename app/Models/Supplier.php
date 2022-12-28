@@ -14,8 +14,6 @@ class Supplier extends Model
     use SoftDeletes;
     protected $fillable = ['name','address','phone','contact_person','created_by'];
 
-
-
     public function user()
     {
         return $this->belongsTo(User::class, 'created_by');

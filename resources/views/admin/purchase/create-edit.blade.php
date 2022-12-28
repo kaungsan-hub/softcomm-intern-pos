@@ -1,42 +1,42 @@
 @extends('admin.layout.app')
+
 @section('content')
-  <div class="content-wrapper">
+
+
+    <div class="content-wrapper">
         <div class="content-body">
             <div class="row my-1">
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center my-1">
-                                <div>Sample Create or Edit Form</div>
+                                <div>Purchase Form</div>
                                 <a href="{{ url('admin/sample') }}" class="btn btn-primary btn-sm" title="back">
                                     <i class="la la-chevron-circle-left"></i>
                                 </a>
                             </div>
-                            <form class="form">
-                              
+                            <form class="form" action="{{url('/admin/purchases')}}" method="post">
+                                @csrf
                                 <div class="form-body">
                                     <div class="form-group">
-                                        <label for="donationinput1" class="">First Name</label>
-                                        <input type="text" id="donationinput1" class="form-control" placeholder="First Name" name="fname">
+                                        <label>Purchase Date</label>
+                                        <input type="date" class="form-control"
+                                            name="purchase_date">
                                     </div>
                                     <div class="form-group">
-                                        <label for="donationinput2" class="">Last Name</label>
-                                        <input type="text" id="donationinput2" class="form-control" placeholder="Last Name" name="lanme">
+                                        <select name="supplier_id" class="form-control">
+                                                <option value="">Please Choose supplier</option>
+                                            @foreach ($suppliers as $supplier)
+                                                <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
+                                            @endforeach             
+                                        </select>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="donationinput3" class="">E-mail</label>
-                                        <input type="email" id="donationinput3" class="form-control" placeholder="E-mail" name="email">
+                                    
+                                    <div class="parent_div form-group">
+                                        <button type="button" id="addbtn" class="btn btn-primary mb-2">+ Add New Items and Quantity</button>
                                     </div>
-    
-                                    <div class="form-group">
-                                        <label for="donationinput4" class="">Contact Number</label>
-                                        <input type="text" id="donationinput4" class="form-control" placeholder="Phone" name="phone">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="donationinput7" class="">Message</label>
-                                        <textarea id="donationinput7" rows="5" class="form-control square" name="message" placeholder="message"></textarea>
-                                    </div>    
                                 </div>
+                                <p><b>Total Amount: </b><span>0 Ks</span></p>
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </form>
                         </div>
@@ -44,5 +44,6 @@
                 </div>
             </div>
         </div>
-  </div>
+    </div>
+    
 @endsection

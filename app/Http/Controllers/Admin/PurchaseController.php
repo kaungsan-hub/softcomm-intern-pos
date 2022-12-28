@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\{Item, Purchase, Supplier, PurchaseDetail};
+use Illuminate\Support\Facades\Auth;
+
 class PurchaseController extends Controller
 {
     /**
@@ -12,7 +15,7 @@ class PurchaseController extends Controller
      */
     public function index()
     {
-        return view('admin.purchase.create-edit');
+        return view('admin.purchase.index');
     }
 
     /**
@@ -22,7 +25,9 @@ class PurchaseController extends Controller
      */
     public function create()
     {
-        //
+        $items = Item::all();
+        $suppliers =Supplier::all();
+        return view('admin.purchase.create-edit', compact('items', 'suppliers'));
     }
 
     /**
@@ -33,7 +38,34 @@ class PurchaseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $purchase_date=$request->purchase_date;
+        $supplier_id=$request->supplier_id;
+        $total_amount=5;
+        $created_by=Auth()->user()->id;
+        $update_by=Auth()->user()->id;
+
+        $request->validate([
+            'purchase_date'=>'required',
+            'supplier_id'=>'required', 
+        ]);
+        
+        Purchase::create([
+            'purchase_date'=>$purchase_date,
+            'supplier_id'=>$supplier_id,
+            'total_amount'=>$total_amount,
+            'created_by'=>$created_by,
+            'update_by'=>$update_by
+        ]);
+
+        PurchaseDetail::create([
+            // $purchase_id=;
+            // $item_id=;
+            // $item_code=;
+            // $quantity=;
+            // $purchase_price=;
+            // $amount=;
+        ]);
+        return redirect('/admin/purchases');
     }
 
     /**

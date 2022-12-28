@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('phone');
             $table->string('contact_person');
             $table->integer('created_by');
-            //$table->integer('created_by')->default(1);
             $table->timestamps();
             $table->softDeletes();
         });
