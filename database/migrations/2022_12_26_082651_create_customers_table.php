@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('region');
             $table->string('city');
             $table->string('remark');
-            $table->integer('created_by')->default('1');
+            $table->integer('created_by');
             $table->softDeletes();
             $table->timestamps();
         });

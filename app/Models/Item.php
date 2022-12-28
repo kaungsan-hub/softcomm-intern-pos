@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Models\{Category, ItemLocation, Brand};
+use App\Models\{Category, ItemLocation, Brand, User};
 
 class Item extends Model
 {
@@ -21,5 +21,8 @@ class Item extends Model
     }
     public function itemLocation(){
         return $this->belongsTo(ItemLocation::class, 'item_location_id');
+    }
+    public function users(){
+        return $this->belongsTo(User::class, 'created_by');
     }
 }
