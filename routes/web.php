@@ -2,11 +2,10 @@
 
 use App\Http\Controllers\Admin\ItemLocationController;
 
-use App\Http\Controllers\Admin\{AdminController, AuthController, CounterController, CustomerController, UserController, ItemController, SaleController, CategoryController, BrandController, OpeningController, SupplierController};
+use App\Http\Controllers\Admin\{AdminController, OpeningController, AuthController, SupplierController, PurchaseController, PurchaseDetailController, CounterController, CustomerController, UserController, ItemController, SaleController, CategoryController, BrandController};
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\SetPriceController;
-use App\Http\Controllers\Admin\{PurchaseController, PurchaseDetailController};
 
 Route::get('/', function () {
     return view('welcome');
@@ -74,4 +73,3 @@ Route::middleware('authMiddleware')->group(function () {
         });
 
     });
-
