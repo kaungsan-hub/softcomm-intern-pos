@@ -18,6 +18,7 @@ class SetPriceController extends Controller
     {
         $setprices = SetPrice::paginate(10);
         $items=Item::all(); 
+        //$setprice = SetPrice::find($id);
         return view('admin.set-price.index',compact('setprices','items'));
     }
 
@@ -35,14 +36,18 @@ class SetPriceController extends Controller
         $r2 = $request->r2;     
         $created_by = Auth()->user()->id;  
         
-        dd($request->all);
+        // dd($request->all());
+        //dd($request->all());
 
         $request->validate([
             'item_id'=>'required',
             'r1'=>'required',
             'r2'=>'required',
-            'created_by'=>'required'
-        ]);
+            //'created_by'=>'required'
+        ]); 
+
+        // dd($request->all());
+
 
         SetPrice::create([
             'item_id'=>$item_id,
@@ -61,8 +66,11 @@ class SetPriceController extends Controller
 
     public function edit($id)
     {
+        //$items=Item::all(); 
+        
         $setprice = SetPrice::find($id);
-        return view('admin.set-price.create-edit',compact('setprice')); 
+        $items=Item::find($setprice->item_id); 
+        return view('admin.set-price.create-edit',compact('setprice','items')); 
     }
  
     public function update(Request $request, $id)
@@ -70,13 +78,12 @@ class SetPriceController extends Controller
         $item_id = $request->item_id;
         $r1 = $request->r1;
         $r2 = $request->r2;     
-        $created_by = Auth()->user()->id;        
+
 
         $request->validate([
             'item_id'=>'required',
             'r1'=>'required',
-            'r2'=>'required',
-            'created_by'=>'required'
+            'r2'=>'required'
         ]);
 
         SetPrice::find($id)->update([

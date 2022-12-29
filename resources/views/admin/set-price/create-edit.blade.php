@@ -59,10 +59,9 @@
                             </div>
 
                             <button type="submit" class="btn btn-primary">
-
                                 {{ isset($setprice->id) ? 'Update' : 'Submit' }}
-
                             </button>
+                            
                             </form>
                         </div>
 

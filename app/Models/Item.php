@@ -27,6 +27,6 @@ class Item extends Model
     }
 
     public function setprice(){
-        return $this->belongsTo(SetPrice::class,'setprice_id');
+        return $this->hasOne(SetPrice::class,'item_id');
     }
 }

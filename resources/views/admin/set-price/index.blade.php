@@ -53,7 +53,7 @@
                                             <tr>
                                                 <td>{{ $setprice->id }}</td>
                                                 <td>{{ $setprice->id }}</td>
-                                                <td>{{ $setprice->item_code }}</td>
+                                                <td>{{ $setprice->items->id }}</td> 
                                                 <td>{{ $setprice->r1 }}</td>
                                                 <td>{{ $setprice->r2 }}</td>
                                                 <td>{{ $setprice->user->name }}</td>
