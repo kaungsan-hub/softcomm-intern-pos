@@ -58,7 +58,6 @@
                                         "name='item_ids[]' onclick='getPreviousSelectedItemPrice(this)' onchange='onSelectItem(this);'>" +
                                         "<option disabled selected>Please select item</option>"+
                                         "@foreach ($items as $item)"+
-                                        "@dd($item)" +
                                             "<option value='{{ $item->id }}' data-price={{ $item->setprice->r1 }}>"+
                                                 "{{ $item->name }}"+
                                             "</option>"+

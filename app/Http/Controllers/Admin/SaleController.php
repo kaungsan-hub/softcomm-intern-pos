@@ -31,13 +31,10 @@ class SaleController extends Controller
      */
     public function create()
     {
-        // $items =  Item::select('items.*')->where('items.id', '=', 1)->get();
-        // $items = DB::table('items')
-        //     ->join('set_prices', 'items.id', '=', 'set_prices.item_id')
-        //     ->select('items.*')
-        //     ->get();
-        $items = Item::all();
-        // dd($items);
+        $items =  Item::select('items.*')
+                    ->join("set_prices", "set_prices.item_id", "=", "items.id")
+                    ->get();
+        dd($items);
         return view('admin.sale.create-edit', compact('items'));
     }
 
