@@ -21,11 +21,11 @@
                             </div>
                             @if (isset($brand))
                             
-                            <form class="col-6" method="post" action="{{ url('admin/brands/'.$brand->id) }}">
+                            <form class="" method="post" action="{{ url('admin/brands/'.$brand->id) }}">
                             @method('PUT')
                             @else
                             
-                            <form class="col-6" method="post" action="{{ url('admin/brands/') }}">
+                            <form class="" method="post" action="{{ url('admin/brands/') }}">
                             @endif
                                 @csrf
                                 <div class="form-body">

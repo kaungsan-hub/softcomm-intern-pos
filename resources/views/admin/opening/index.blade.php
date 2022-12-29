@@ -40,7 +40,7 @@
                                             <td>{{$openingDetail->item->name}}</td>
                                             <td>{{$openingDetail->quantity}}</td>
                                             <td>{{$openingDetail->opening->remark}}</td>
-                                            <td>{{$opening->user->id}}</td>
+                                            <td>{{$openingDetail->opening->created_by}}</td>
                                             <td>{{$openingDetail->created_at->format("j M Y")}}</td>
                                             <td>
                                                 <form action="" method="POST"> @csrf  @method('delete')
