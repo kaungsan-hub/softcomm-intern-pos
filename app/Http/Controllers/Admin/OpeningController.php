@@ -28,7 +28,7 @@ class OpeningController extends Controller
             $openings = Opening::paginate(10);
         }
         // $openingDetails = OpeningDetail::all();
-       
+
         return view('admin.opening.index',compact('openings'));
     }
 

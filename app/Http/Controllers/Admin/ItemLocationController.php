@@ -15,16 +15,15 @@ class ItemLocationController extends Controller
      */
     public function index(Request $request)
     {
-        // if (isset($request->search)) {
-        //     $itemsLocation = ItemLocation::query()
-        //         ->where('name', 'LIKE', "%{$request->search}%")
-        //         // ->orWhere('id', 'LIKE', "%{$request->search}%")
-        //         // ->orWhere('description', 'LIKE', "%{$request->search}%")
-        //         // ->orWhere('created_by', 'LIKE', "%{$request->search}%")
-        //         ->get();
-        // } else {
+        if (isset($request->search)) {
+            $itemsLocation = ItemLocation::query()
+                ->where('name', 'LIKE', "%{$request->search}%")
+                ->orWhere('id', 'LIKE', "%{$request->search}%")
+                ->orWhere('description', 'LIKE', "%{$request->search}%")
+                ->paginate(10);
+        } else {
             $itemsLocation = ItemLocation::paginate(10);
-        // }
+        }
 
         return view('admin.item-location.index',compact('itemsLocation'));
     }

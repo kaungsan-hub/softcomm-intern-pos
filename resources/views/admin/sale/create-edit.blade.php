@@ -16,12 +16,19 @@
                                 @csrf
                                 <div class="form-body">
                                     <div class="form-group">
-                                        <label>Customer ID</label>
-                                        <input type="text" class="form-control @error('customer_id') is-invalid @enderror" placeholder="Customer ID"
+                                        <label>Customer Name</label>
+                                        <select class="form-control @error('customer_id') is-invalid @enderror"
+                                            aria-label="Default select example" name="customer_id">
+                                            <option disabled selected>Please select customer</option>
+                                            @foreach ($customers as $customer)
+                                                <option value="{{ $customer->id }}">{{ $customer->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        {{-- <input type="text" class="form-control @error('customer_id') is-invalid @enderror" placeholder="Customer ID"
                                             name="customer_id" value="{{ old('customer_id') }}">
                                         @error('customer_id') 
                                             <span class="invalid-feedback">{{ $message }}</span>
-                                        @enderror
+                                        @enderror --}}
                                     </div>
                                     <hr>
                                     <div class="d-flex justify-content-between align-items-center my-1">
