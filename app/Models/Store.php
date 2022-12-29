@@ -9,4 +9,8 @@ class Store extends Model
 {
     use HasFactory;
     protected $fillable = ['item_id','in_qty','out_qty','balance'];
+
+    public function item(){
+        return $this->belongsTo(Item::class);
+    }
 }

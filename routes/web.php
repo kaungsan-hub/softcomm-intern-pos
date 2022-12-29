@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Admin\ItemLocationController;
 
-use App\Http\Controllers\Admin\{AdminController, OpeningController, AuthController, SupplierController, PurchaseController, PurchaseDetailController, CounterController, CustomerController, UserController, ItemController, SaleController, CategoryController, BrandController};
+use App\Http\Controllers\Admin\{AdminController, OpeningController, AuthController, SupplierController, PurchaseController, PurchaseDetailController, CustomerController, UserController, ItemController, SaleController, CategoryController, BrandController, StoreController};
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\SetPriceController;
@@ -26,6 +26,9 @@ Route::middleware('authMiddleware')->group(function () {
         //set-price
         Route::resource('/setprices',SetPriceController::class);
         
+        #store
+        Route::get('/store', [StoreController::class, 'index']);
+
         // Sample
         Route::get('/sample', [AdminController::class, 'sampleIndex']);
         Route::get('/sample/create-edit', [AdminController::class, 'sampleCreateEdit']);

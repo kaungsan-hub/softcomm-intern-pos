@@ -25,8 +25,11 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Remark</label>
-                                    <input type="text" class="form-control" placeholder="Remark"
+                                    <input type="text"  class="form-control @error('remark') is-invalid @enderror" value="{{ old('remark', $openings->remark ?? '') }} "
                                         name="remark">
+                                        @error('remark')
+                                        <span class="invalid-feedback">{{$message}}</span>
+                                        @enderror
                                 </div>
                                 <hr>
                             </div>
