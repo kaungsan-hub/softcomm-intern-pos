@@ -7,7 +7,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center">
-                                <div>Sample Tables</div>
+                                <div>Opening Tables</div>
                                 <a href="{{ route('openings.create') }}" class="btn btn-primary btn-sm" title="add new">
                                     <i class="la la-plus-circle"></i>
                                 </a>
@@ -40,7 +40,7 @@
                                             <td>{{$openingDetail->item->name}}</td>
                                             <td>{{$openingDetail->quantity}}</td>
                                             <td>{{$openingDetail->opening->remark}}</td>
-                                            <td>{{$openingDetail->created_at}}</td>
+                                            <td>{{$openings->user}}</td>
                                             <td>{{$openingDetail->created_at->format("j M Y")}}</td>
                                             <td>
                                                 <form action="" method="POST"> @csrf  @method('delete')
