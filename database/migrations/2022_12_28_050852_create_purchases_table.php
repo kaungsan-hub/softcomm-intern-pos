@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('supplier_id');
             $table->integer('total_amount');
             $table->integer('created_by');
-            $table->integer('update_by');
+            $table->integer('update_by')->nullable();
             $table->timestamps();
         });
     }
