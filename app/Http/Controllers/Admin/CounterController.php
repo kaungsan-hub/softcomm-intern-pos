@@ -17,9 +17,9 @@ class CounterController extends Controller
     public function index(Request $request)
     {
         if (isset($request->search)) {
-            $counters = Counter::select('counters.*')
-                ->join('users','counters.created_by','=','users.id')
+            $counters = Counter::query()
                 ->where('name', 'LIKE', "%{$request->search}%")
+                ->orWhere('id', 'LIKE', "%{$request->search}%")
                 ->paginate(10);
         } else {
             $counters = Counter::paginate(10);
