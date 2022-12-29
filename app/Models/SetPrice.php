@@ -18,7 +18,7 @@ class SetPrice extends Model
         return $this->belongsTo(User::class, 'created_by');
     }
 
-    public function item()
+    public function items()
     {
         return $this->hasMany(Item::class, 'item_id');
     }
