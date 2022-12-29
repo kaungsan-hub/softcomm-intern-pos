@@ -47,3 +47,16 @@
     </div>
     
 @endsection
+
+@section('js')
+<script>
+    $(document).ready(function(){
+        $('#addbtn').click(function(){
+            $('.parent_div').append('<div class="form-group d-flex"><select name="supplier_id" class="form-control"><option value="">Please Choose items</option>@foreach ($items as $item)<option value="{{ $item->id }}">{{ $item->name }}</option>@endforeach</select><input type="number" class="form-control mx-2" name="quantity" placeholder="Quantity"><button id="delbtn" type="button" class="btn btn-danger d-inline">- Remove</button></div>');
+        });
+        $('.parent_div').on('click', '#delbtn', function(){
+            $(this).parent().remove();
+        });
+    });
+</script>
+@endsection

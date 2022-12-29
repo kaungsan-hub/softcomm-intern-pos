@@ -5,6 +5,10 @@ use App\Http\Controllers\Controller;
 use App\Models\OpeningDetail;
 use Illuminate\Http\Request;
 use App\Models\Item;
+use App\Models\Opening;
+use App\Models\Store;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class OpeningController extends Controller
 {
@@ -15,8 +19,9 @@ class OpeningController extends Controller
      */
     public function index()
     {
-        // $openingDetail = OpeningDetail::all();
-        return view('admin.opening.index');
+        $openingDetails = OpeningDetail::all();
+        $opening = Opening::all();
+        return view('admin.opening.index',compact('openingDetails','opening'));
     }
 
     /**
@@ -39,7 +44,33 @@ class OpeningController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        DB::beginTransaction();
+        try{
+
+            $opening = Opening::create([
+            'remark' => $request->remark,
+            'created_by' => Auth()->user()->id
+            ]);
+
+            for($i=0; $i<count($request->items);$i++){
+                OpeningDetail::create([
+                    'opening_id' => $opening->id,
+                    'item_id' => $request->items[$i],
+                    'quantity' => $request->quantities[$i],
+                ]);
+
+                Store::create([
+                    'item_id' => $request->items[$i],
+                    'in_qty' => $request->quantities[$i],
+                    'balance' => $request->quantities[$i],
+                ]);
+            }
+            DB::commit();
+        }catch(\Exception $e){
+            DB::rollBack();
+        }
+        return redirect()->route('openings.index')->with('msg','Opening has been created successfully.');
     }
 
     /**

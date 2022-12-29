@@ -9,5 +9,13 @@ class OpeningDetail extends Model
 {
     use HasFactory;
     protected $fillable =['opening_id','quantity','item_id'];
-    
+
+    public function opening(){
+        return $this->belongsTo(Opening::class);
+    }
+
+    public function item(){
+        return $this->belongsTo(Item::class);
+    }
+
 }
