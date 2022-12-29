@@ -14,4 +14,8 @@ class Opening extends Model
     public function items(){
         return $this->hasMany(Item::class, 'item_id');
     }
+
+    public function openingDetails(){
+        return $this->hasMany(OpeningDetail::class, 'item_id');
+    }
 }

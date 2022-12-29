@@ -2,9 +2,8 @@
 
 use App\Http\Controllers\Admin\ItemLocationController;
 
-use App\Http\Controllers\Admin\{AdminController, AuthController, CounterController, CustomerController, UserController, ItemController, SaleController, CategoryController, BrandController, OpeningController, SupplierController};
+use App\Http\Controllers\Admin\{AdminController, OpeningController, AuthController, SupplierController, SetPriceController, PurchaseController, PurchaseDetailController, CounterController, CustomerController, UserController, ItemController, SaleController, CategoryController, BrandController};
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\{ PurchaseController, PurchaseDetailController};
 
 Route::get('/', function () {
     return view('welcome');
@@ -25,6 +24,9 @@ Route::middleware('authMiddleware')->group(function () {
         // Main
         Route::get('/', [AdminController::class, 'index']);
 
+        //set-price
+        Route::resource('/setprices',SetPriceController::class);
+        
         // Sample
         Route::get('/sample', [AdminController::class, 'sampleIndex']);
         Route::get('/sample/create-edit', [AdminController::class, 'sampleCreateEdit']);
@@ -34,10 +36,10 @@ Route::middleware('authMiddleware')->group(function () {
 
         // Customer
         Route::resource('/customers', CustomerController::class);
-
-        // Supplier
-        Route::resource('/suppliers', SupplierController::class);
-        Route::resource('/suppliers', SupplierController::class);
+    
+        //supplier
+        Route::resource('/suppliers',SupplierController::class);
+        
         Route::get('/suppliers/autocomplete-search', [SupplierController::class, 'autocompleteSearch']);
 
         // Item
@@ -55,6 +57,7 @@ Route::middleware('authMiddleware')->group(function () {
         // Brand
         Route::resource('/brands', BrandController::class);
 
+        
         //Supplier
         Route::resource('/suppliers', SupplierController::class);
 
@@ -68,8 +71,6 @@ Route::middleware('authMiddleware')->group(function () {
         // Sales
         Route::resource('/sales', SaleController::class);
 
-        }); 
-});
+        });
 
-
-
+    });

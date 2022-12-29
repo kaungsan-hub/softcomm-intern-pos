@@ -7,16 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
-class Supplier extends Model
+class SetPrice extends Model
 {
-
     use HasFactory;
     use SoftDeletes;
-    protected $fillable = ['name','address','phone','contact_person','created_by'];
+    protected $fillable = ['item_code','r1','r2','created_by'];
 
     public function user()
     {
         return $this->belongsTo(User::class, 'created_by');
     }
-
 }
