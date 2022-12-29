@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 
 use App\Models\SetPrice;
 
+use App\Models\Item;
+
 
 class SetPriceController extends Controller
 {
@@ -21,7 +23,8 @@ class SetPriceController extends Controller
 
     public function create()
     {
-        return view('admin.set-price.create-edit');
+        $items=Item::all(); 
+        return view('admin.set-price.create-edit',compact('items'));
     }
 
     public function store(Request $request)
