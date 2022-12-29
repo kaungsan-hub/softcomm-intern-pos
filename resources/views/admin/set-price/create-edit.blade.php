@@ -25,12 +25,27 @@
                             <div class="form-body">
 
                                 <div class="form-group">
-                                    <select name="item_id"
-                                        class="form-control @error('item_id') is-invalid @enderror">
-                                        <option value="">Select Item Code</option>
+                                    <label for="item_id">Item Code</label>
+                                    <select name="item_id" class="form-control @error('item_id') is-invalid @enderror">
+                                        {{-- <option value="">Select Item Code</option> --}}
+
+                                        <option selected disabled="disabled">Select Item Code</option>
+
                                         @foreach ($items as $item)
-                                            <option value="{{ $item->id }}"> {{ $item->item_code }} </option>
-                                        @endforeach
+
+                                        @if (isset($setprice->id))
+
+                                        <option value={{ $item->id }}
+                                            {{ $setprice->item_id == $item->id ? 'selected' : '' }}>{{ $item->item_code }}
+                                        </option>
+
+                                        @else 
+                                        
+                                        <option value="{{ $item->id }}"> {{ old('item_code', $item->item_code ?? '' ) }} </option>                                    
+
+                                        @endif                                            
+
+                                        @endforeach 
                                     </select>
                                     @error('item_id')
                                         <span class="invalid-feedback"> {{ $message }} </span>
@@ -61,7 +76,7 @@
                             <button type="submit" class="btn btn-primary">
                                 {{ isset($setprice->id) ? 'Update' : 'Submit' }}
                             </button>
-                            
+
                             </form>
                         </div>
 

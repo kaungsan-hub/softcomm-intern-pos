@@ -13,6 +13,11 @@ class SaleDetail extends Model
 
     public function item()
     {
-        return $this->hasMany(Item::class, 'item_id');
+        return $this->belongsTo(Item::class, 'item_id');
+    }
+
+    public function sale()
+    {
+        return $this->belongsTo(Sale::class, 'sale_id');
     }
 }
