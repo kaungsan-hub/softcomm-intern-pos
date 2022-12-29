@@ -1,6 +1,6 @@
 @extends('admin.layout.app')
 @section('content')
-  <div class="content-wrapper">
+    <div class="content-wrapper">
         <div class="content-body">
             <div class="row my-1">
                 <div class="col-md-12">
@@ -34,15 +34,23 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                        </tr>
+                                        @foreach ($sales as $sale)
+                                            <tr>
+                                                <th scope="row">{{ $sale->id }}</th>
+                                                <td>{{ $sale->sale_date }}</td>
+                                                <td>{{ $sale->customer->name }}</td>
+                                                <td>
+                                                    <ul>
+                                                        @foreach ($sale->saleDetails as $saleDetail)
+                                                            <li> {{ $saleDetail->item->name }} </li>
+                                                        @endforeach
+                                                    </ul>
+                                                </td>
+                                                <td>{{ $sale->total_amount }}</td>
+                                                <td>{{ $sale->creator->name }}</td>
+                                                <td>{{ isset($sale->updater->name) ? $sale->updater->name : 'None' }}</td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -51,5 +59,5 @@
                 </div>
             </div>
         </div>
-  </div>
+    </div>
 @endsection
