@@ -14,9 +14,16 @@ class CounterController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $counters = Counter::paginate(10);
+        if (isset($request->search)) {
+            $counters = Counter::select('counters.*')
+                ->join('users','counters.created_by','=','users.id')
+                ->where('name', 'LIKE', "%{$request->search}%")
+                ->paginate(10);
+        } else {
+            $counters = Counter::paginate(10);
+        }
         return view('admin.counter.index',compact('counters'));
     }
 

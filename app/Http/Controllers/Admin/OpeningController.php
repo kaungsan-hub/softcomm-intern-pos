@@ -17,7 +17,7 @@ class OpeningController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         if (isset($request->q)) {
             $openings = Opening::query()
@@ -28,7 +28,7 @@ class OpeningController extends Controller
             $openings = Opening::paginate(10);
         }
         // $openingDetails = OpeningDetail::all();
-       
+
         return view('admin.opening.index',compact('openings'));
     }
 
