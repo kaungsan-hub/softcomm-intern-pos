@@ -15,7 +15,7 @@
                                     <i class="la la-chevron-circle-left"></i>
                                 </a>
                             </div>
-                            <form class="form" action="{{url('/admin/purchases')}}" method="post">
+                            <form name="input" class="form" action="{{url('/admin/purchases')}}" method="post">
                                 @csrf
                                 <div class="form-body">
                                     <div class="form-group">
@@ -37,8 +37,7 @@
                                     </div>
                                 </div>
                                 <p><b>Total Amount: </b></p>
-                                {{-- <input type="text" name="total_amount" id="multiply_result" class="form-control" value="" readonly> --}}
-                                <p id="multiply_result"></p>
+                                <input type="text" name="total_amount" id="multiply_result" class="form-control" value="" readonly>
                                 <button type="button" onClick="multiplyAdd()">ADD</button>
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </form>
@@ -62,11 +61,13 @@
         });
     });
    
-    function multiplyAdd(){
-        quantity = document.getElementById("quantity").value;
-        price = document.getElementById("price").value;
-        document.getElementById("multiply_result").innerHTML = quantity*price;
-        // document.input.total_amount.value = quantity*price;
-    }
+        function multiplyAdd(){ 
+            quantity = document.getElementById("quantity").value;
+            price = document.getElementById("price").value;
+            $add = document.input.total_amount.value = quantity*price;
+            $i = 0;
+        }
+
+        
 </script>
 @endsection
