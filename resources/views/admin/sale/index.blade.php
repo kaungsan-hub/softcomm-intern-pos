@@ -16,11 +16,15 @@
                                 <input type="text" class="form-control my-1 col-4 float-right" placeholder="search">
                             </form>
                             <div class="table-responsive">
-                                @if (Session::has('msg'))
-                                    <div class="alert {{ Session::get('msg-class') }}" role="alert">
-                                        {{ Session::get('msg') }}
-                                    </div>
-                                @endif
+
+                                @if(session()->has('msg'))
+                            <div class="alert alert-success">
+                                <span>{{session()->get('msg')}}</span>
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            </div>
+                            @endif
+
+
                                 <table class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
@@ -31,6 +35,7 @@
                                             <th>Total Amount</th>
                                             <th>Created By</th>
                                             <th>Updated By</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -49,6 +54,18 @@
                                                 <td>{{ $sale->total_amount }}</td>
                                                 <td>{{ $sale->creator->name }}</td>
                                                 <td>{{ isset($sale->updater->name) ? $sale->updater->name : 'None' }}</td>
+                                                <td class="text-nowrap">
+
+                                                    <form action="{{ url('admin/sales/' . $sale->id) }}" method="post">
+                                                        @csrf
+                                                        @method('delete')
+
+                                                        <button class="btn btn-danger btn-sm"
+                                                            onclick="return confirm('Are you sure to delete?')"><i
+                                                                class="ft-trash"></i></button>
+                                                    </form>
+
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
