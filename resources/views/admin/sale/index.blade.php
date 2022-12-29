@@ -16,6 +16,11 @@
                                 <input type="text" class="form-control my-1 col-4 float-right" placeholder="search">
                             </form>
                             <div class="table-responsive">
+                                @if (Session::has('msg'))
+                                    <div class="alert {{ Session::get('msg-class') }}" role="alert">
+                                        {{ Session::get('msg') }}
+                                    </div>
+                                @endif
                                 <table class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
