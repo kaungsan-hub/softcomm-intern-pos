@@ -167,7 +167,7 @@
                             data-i18n="">Counter</span></a>
                 </li>
                 <li class="nav-item {{ Route::current()->uri == 'admin/customers' ? 'active' : '' }}"><a
-                        href="{{ url('admin/customers') }}"><i class="ft-user"></i><span class="menu-title"
+                        href="{{ url('admin/customers') }}"><i class="ft-users"></i><span class="menu-title"
                             data-i18n="">Customer</span></a>
                 </li>
                 <li class="nav-item {{ Route::current()->uri == 'admin/users' ? 'active' : '' }}"><a
@@ -175,8 +175,21 @@
                             data-i18n="">User</span></a>
                 </li>
                 {{-- transaction tabs --}}
-                <li class="nav-item {{ Route::current()->uri == 'admin/sales' ? 'active' : '' }}"><a href="{{ url('admin/sales') }}"><i class="ft-check-circle"></i><span
-                            class="menu-title" data-i18n="">Sale</span></a>
+                <li class="nav-item {{ Route::current()->uri == 'admin/purchases' ? 'active' : '' }}"><a
+                        href="{{ url('admin/purchases') }}"><i class="ft-arrow-right"></i><span class="menu-title"
+                            data-i18n="">Purchase</span></a>
+                </li>
+                <li class="nav-item {{ Route::current()->uri == 'admin/openings' ? 'active' : '' }}"><a
+                        href="{{ url('admin/openings') }}"><i class="ft-arrow-right"></i><span class="menu-title"
+                            data-i18n="">Opening</span></a>
+                </li>
+                <li class="nav-item {{ Route::current()->uri == 'admin/setprices' ? 'active' : '' }}"><a
+                        href="{{ url('admin/setprices') }}"><i class="ft-award"></i><span class="menu-title"
+                            data-i18n="">Set Price</span></a>
+                </li>
+                <li class="nav-item {{ Route::current()->uri == 'admin/sales' ? 'active' : '' }}"><a
+                        href="{{ url('admin/sales') }}"><i class="ft-check-circle"></i><span class="menu-title"
+                            data-i18n="">Sale</span></a>
                 </li>
                 <li class="nav-item"><a href="{{ url('admin/sample') }}"><i class="ft-layout"></i><span
                             class="menu-title" data-i18n="">Sample Features</span></a>

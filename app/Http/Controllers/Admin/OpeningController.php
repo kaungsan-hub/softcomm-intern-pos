@@ -17,11 +17,19 @@ class OpeningController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $openingDetails = OpeningDetail::all();
-        $opening = Opening::all();
-        return view('admin.opening.index',compact('openingDetails','opening'));
+        if(isset($request->q)) {
+            $openings = Opening::query()
+                ->where('remark', 'LIKE', "%{$request->q}%")
+                // ->orWhere('created_by', 'LIKE', "%{$request->q}%")
+                ->paginate(10);
+        } else {
+            $openings = Opening::paginate(10);
+        }
+        // $openingDetails = OpeningDetail::all();
+       
+        return view('admin.opening.index',compact('openings'));
     }
 
     /**

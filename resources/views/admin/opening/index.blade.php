@@ -7,52 +7,51 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center">
-                                <div>Sample Tables</div>
+                                <div>Opening Tables</div>
                                 <a href="{{ route('openings.create') }}" class="btn btn-primary btn-sm" title="add new">
                                     <i class="la la-plus-circle"></i>
                                 </a>
                             </div>
-                            <form action="">
-                                <input type="text" class="form-control my-1 col-4 float-right" placeholder="search">
+                            <form method="GET" action="{{ url('/admin/openings') }}" class="form-inline my-2 my-lg-0 float-right">
+                                <div class="input-group my-1">
+                                    <input type="text" class="form-control" placeholder="Search" name="q">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary btn-sm" type="submit">
+                                            <i class="la la-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
                             </form>
                             <div class="table-responsive">
-                                @if(session()->has('msg'))
-                                    <div class="alert alert-light mt-3">
-                                        <span>{{ session()->get('msg') }}</span>
+                                @if (session()->has('msg'))
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                        <span>{{session()->get('msg')}}</span>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
                                     </div>
                                 @endif
                                 <table class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
                                             <th>Opening ID</th>
-                                            <th>Item Name</th>
-                                            <th>Quantity</th>
                                             <th>Remark</th>
                                             <th>User</th>
                                             <th>Opening_Date</th>
-                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($openingDetails as $openingDetail)
+                                        @foreach ($openings as $opening)
                                         <tr>
-                                            <td>{{$openingDetail->opening_id}}</td>
-                                            <td>{{$openingDetail->item->name}}</td>
-                                            <td>{{$openingDetail->quantity}}</td>
-                                            <td>{{$openingDetail->opening->remark}}</td>
-                                            <td>{{$openingDetail->created_at}}</td>
-                                            <td>{{$openingDetail->created_at->format("j M Y")}}</td>
-                                            <td>
-                                                <form action="" method="POST"> @csrf  @method('delete')
-                                                    <button class="btn btn-outline-danger btn-sm" onclick="return confirm('Are you sure?')">Remove</button>
-                                                    <a class="btn btn-outline-success btn-sm" href="">Update </a>
-                                                </form>
-                                            </td>
+                                            <td>{{$opening->id}}</td>
+                                            <td>{{$opening->remark}}</td>
+                                            <td>{{$opening->user->name}}</td>
+                                            <td>{{$opening->created_at->format("j M Y")}}</td>
                                         </tr>
                                         @endforeach
-
                                     </tbody>
                                 </table>
+                                {{$openings->links()}}
                             </div>
                         </div>
                     </div>

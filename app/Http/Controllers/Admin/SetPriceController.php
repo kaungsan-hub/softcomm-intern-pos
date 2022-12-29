@@ -42,7 +42,7 @@ class SetPriceController extends Controller
         $request->validate([
             'item_id'=>'required',
             'r1'=>'required',
-            'r2'=>'required',
+            'r2'=>'required'
             //'created_by'=>'required'
         ]); 
 
@@ -66,10 +66,11 @@ class SetPriceController extends Controller
 
     public function edit($id)
     {
-        //$items=Item::all(); 
-        
+        $items=Item::all(); 
+        $specificItem = Item::find(1);
+        //dd($specificItem->setprice->r1);
         $setprice = SetPrice::find($id);
-        $items=Item::find($setprice->item_id); 
+        //$items=Item::find($setprice->item_id); 
         return view('admin.set-price.create-edit',compact('setprice','items')); 
     }
  

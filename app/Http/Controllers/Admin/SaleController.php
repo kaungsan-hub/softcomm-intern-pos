@@ -13,33 +13,22 @@ use Illuminate\Support\Facades\DB;
 
 class SaleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        return view('admin.sale.index');
+        $sales = Sale::all();
+        return view('admin.sale.index', compact('sales'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
-        $items = Item::all();
+        $items =  Item::select('items.*')
+                    ->join("set_prices", "set_prices.item_id", "=", "items.id")
+                    ->get();
         return view('admin.sale.create-edit', compact('items'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $request->validate([
@@ -74,48 +63,29 @@ class SaleController extends Controller
         return redirect('admin/sales')->with('msg', 'A sale has been done successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Sale  $sale
-     * @return \Illuminate\Http\Response
-     */
+
     public function show(Sale $sale)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Sale  $sale
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit(Sale $sale)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Sale  $sale
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, Sale $sale)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Sale  $sale
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Sale $sale)
+
+    public function destroy($id)
     {
-        //
+        Sale::find($id)->delete();
+        SaleDetail::where('sale_id', '=', $id)->delete();
+        return redirect('/admin/sales')->with('msg', 'One of Sales Information has been deleted successfully');
     }
 }
