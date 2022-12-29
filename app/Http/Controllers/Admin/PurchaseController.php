@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
+use App\Models\Item;
 use Illuminate\Http\Request;
 class PurchaseController extends Controller
 {
@@ -12,7 +13,7 @@ class PurchaseController extends Controller
      */
     public function index()
     {
-        return view('admin.purchase.create-edit');
+        return view('admin.purchases.index');
     }
 
     /**
@@ -22,7 +23,8 @@ class PurchaseController extends Controller
      */
     public function create()
     {
-        //
+        $items = Item::all();
+        return view('admin.purchases.create-edit', compact('items'));
     }
 
     /**
