@@ -17,13 +17,13 @@ class OpeningController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        if (isset($request->q)) {
+        if(isset($request->q)) {
             $openings = Opening::query()
                 ->where('remark', 'LIKE', "%{$request->q}%")
-                ->orWhere('created_by', 'LIKE', "%{$request->q}%")
-                ->get();
+                // ->orWhere('created_by', 'LIKE', "%{$request->q}%")
+                ->paginate(10);
         } else {
             $openings = Opening::paginate(10);
         }

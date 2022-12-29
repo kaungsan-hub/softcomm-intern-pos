@@ -19,9 +19,9 @@ class BrandController extends Controller
             $brands = Brand::query()
                 ->where('brand_code', 'LIKE', "%{$request->q}%")
                 ->orWhere('name', 'LIKE', "%{$request->q}%")
-                ->get();
+                ->paginate(10);
         } else {
-            $brands = Brand::all();
+            $brands = Brand::paginate(10);
         }
         return view('admin.brand.index',compact('brands'));
     }

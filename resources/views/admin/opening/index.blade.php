@@ -12,7 +12,7 @@
                                     <i class="la la-plus-circle"></i>
                                 </a>
                             </div>
-                            <form method="GET" action="{{ url('admin/openings') }}" class="form-inline my-2 my-lg-0 float-right">
+                            <form method="GET" action="{{ url('/admin/openings') }}" class="form-inline my-2 my-lg-0 float-right">
                                 <div class="input-group my-1">
                                     <input type="text" class="form-control" placeholder="Search" name="q">
                                     <div class="input-group-append">
