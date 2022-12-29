@@ -198,6 +198,19 @@
             </ul>
         </div>
     </footer>
+    {{-- jquery to make select form --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+            $('#addbtn').click(function(){
+                $('.parent_div').append('<div class="form-group d-flex"><select name="supplier_id" class="form-control"><option value="">Please Choose items</option>@foreach ($items as $item)<option value="{{ $item->id }}">{{ $item->name }}</option>@endforeach</select><input type="number" class="form-control mx-2" name="quantity" placeholder="Quantity"><button id="delbtn" type="button" class="btn btn-danger d-inline">- Remove</button></div>');
+            });
+            $('.parent_div').on('click', '#delbtn', function(){
+                $(this).parent().remove();
+            });
+        });
+    </script>
 
     <!-- BEGIN VENDOR JS-->
     <script src="{{ asset('admin-panel/theme-assets/vendors/js/vendors.min.js') }}" type="text/javascript"></script>
