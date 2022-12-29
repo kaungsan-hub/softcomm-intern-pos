@@ -36,8 +36,7 @@ class SaleController extends Controller
         //     ->join('set_prices', 'items.id', '=', 'set_prices.item_id')
         //     ->select('items.*')
         //     ->get();
-        // $items = Item::all();
-        
+        $items = Item::all();
         // dd($items);
         return view('admin.sale.create-edit', compact('items'));
     }
