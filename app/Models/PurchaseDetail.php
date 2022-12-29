@@ -9,4 +9,8 @@ class PurchaseDetail extends Model
 {
     use HasFactory;
     protected $fillable = ['purchase_id','item_id','quantity','purchase_price','amount'];
+
+    public function item(){
+        return $this->belongsTo(Item::class);
+    }
 }

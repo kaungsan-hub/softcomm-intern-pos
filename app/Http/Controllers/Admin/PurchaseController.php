@@ -15,8 +15,10 @@ class PurchaseController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('admin.purchase.index');
+    {   
+        $purchases = Purchase::all();
+        // $purchaseDetail = PurchaseDetail::all();
+        return view('admin.purchase.index', compact('purchases'));
     }
 
     /**
@@ -41,13 +43,13 @@ class PurchaseController extends Controller
     {
         $purchase_date=$request->purchase_date;
         $supplier_id=$request->supplier_id;
-        $total_amount=5;
+        $total_amount=$request->total_amount;
         $created_by=Auth()->user()->id;
-        $update_by=Auth()->user()->id;
 
         $request->validate([
             'purchase_date'=>'required',
             'supplier_id'=>'required', 
+            'total_amount'=>'required'
         ]);
         DB::beginTransaction();
         try{
@@ -55,16 +57,15 @@ class PurchaseController extends Controller
                 'purchase_date'=>$purchase_date,
                 'supplier_id'=>$supplier_id,
                 'total_amount'=>$total_amount,
-                'created_by'=>$created_by,
-                'update_by'=>$update_by
+                'created_by'=>$created_by
             ]);
             for($i = 0; $i < count($request->item_ids); $i++){
                 PurchaseDetail::create([
                     'purchase_id' => $purchase->id,
                     'item_id' => $request->item_ids[$i],
                     'quantity' => $request->qtys[$i],
-                    'purchase_price' => 1000,
-                    'amount' => $request->qtys[$i] * 1000,
+                    'purchase_price' => $request->purchase_price[$i],
+                    'amount' => $request->qtys[$i] * $request->purchase_price[$i]
                 ]);
             }
             DB::commit();

@@ -198,9 +198,6 @@
             </ul>
         </div>
     </footer>
-    {{-- jquery to make select form --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    
 
     <!-- BEGIN VENDOR JS-->
     <script src="{{ asset('admin-panel/theme-assets/vendors/js/vendors.min.js') }}" type="text/javascript"></script>
@@ -217,6 +214,8 @@
     <script src="{{ asset('admin-panel/theme-assets/js/scripts/pages/dashboard-lite.js') }}" type="text/javascript">
     </script>
     <!-- END PAGE LEVEL JS-->
+    {{-- jquery to make select form --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     @yield('js')
 </body>
 

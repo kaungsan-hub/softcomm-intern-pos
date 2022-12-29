@@ -24,31 +24,32 @@
                                 <table class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
-                                            <th>#</th>
+                                            <th>Opening ID</th>
+                                            <th>Item Name</th>
+                                            <th>Quantity</th>
                                             <th>Remark</th>
+                                            <th>User</th>
                                             <th>Opening_Date</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-                                    {{-- <tbody>
-                                        @foreach ($items as $item)
+                                    <tbody>
+                                        @foreach ($openingDetails as $openingDetail)
                                         <tr>
-                                            <td>{{$item->item_code}}</td>
-                                            <td>{{$item->name}}</td>
-                                            <td>{{$item->brands->name}}</td>
-                                            <td>{{$item->categories->name}}</td>
-                                            <td>{{$item->warranty}}</td>
-                                            <td>{{$item->imei_status}}</td>
-                                            <td>{{$item->remark}}</td>
-                                            <td>{{Auth()->user()->name}}</td>
+                                            <td>{{$openingDetail->opening_id}}</td>
+                                            <td>{{$openingDetail->item->name}}</td>
+                                            <td>{{$openingDetail->quantity}}</td>
+                                            <td>{{$openingDetail->opening->remark}}</td>
+                                            <td>{{$openingDetail->created_at}}</td>
+                                            <td>{{$openingDetail->created_at->format("j M Y")}}</td>
                                             <td>
-                                                <form action="{{url('admin/items/'.$item->id)}}" method="POST"> @csrf  @method('delete')
+                                                <form action="" method="POST"> @csrf  @method('delete')
                                                     <button class="btn btn-outline-danger btn-sm" onclick="return confirm('Are you sure?')">Remove</button>
-                                                    <a class="btn btn-outline-success btn-sm" href="{{url('admin/items/'.$item->id.'/edit')}}">Update </a>
+                                                    <a class="btn btn-outline-success btn-sm" href="">Update </a>
                                                 </form>
                                             </td>
                                         </tr>
-                                        @endforeach --}}
+                                        @endforeach
 
                                     </tbody>
                                 </table>

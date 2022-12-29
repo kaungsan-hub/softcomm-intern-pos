@@ -15,10 +15,8 @@ return new class extends Migration
     {
         Schema::create('openings', function (Blueprint $table) {
             $table->id();
-            $table->integer('item_id');
-            $table->integer('quantity');
             $table->integer('created_by');
-            $table->string('remark');
+            $table->text('remark');
             $table->timestamps();
         });
     }

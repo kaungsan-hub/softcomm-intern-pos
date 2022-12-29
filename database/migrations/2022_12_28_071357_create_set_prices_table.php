@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('set_prices', function (Blueprint $table) {
             $table->id();
-            $table->string('item_code');
+            $table->string('item_id');
             $table->integer('r1');
             $table->integer('r2');
             $table->integer('created_by');

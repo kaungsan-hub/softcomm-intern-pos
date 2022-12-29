@@ -8,38 +8,49 @@ use Illuminate\Http\Request;
 
 use App\Models\SetPrice;
 
+use App\Models\Item;
+
 
 class SetPriceController extends Controller
 {
 
     public function index()
     {
-        $setprices = SetPrice::paginate(10); 
-        return view('admin.set-price.index',compact('setprices'));
+        $setprices = SetPrice::paginate(10);
+        $items=Item::all(); 
+        //$setprice = SetPrice::find($id);
+        return view('admin.set-price.index',compact('setprices','items'));
     }
 
 
     public function create()
     {
-        return view('admin.set-price.create-edit');
+        $items=Item::all(); 
+        return view('admin.set-price.create-edit',compact('items'));
     }
 
     public function store(Request $request)
     {
-        $item_code = $request->item_code;
+        $item_id = $request->item_id;
         $r1 = $request->r1;
         $r2 = $request->r2;     
-        $created_by = Auth()->user()->id;        
+        $created_by = Auth()->user()->id;  
+        
+        // dd($request->all());
+        //dd($request->all());
 
         $request->validate([
-            'item_code'=>'required',
+            'item_id'=>'required',
             'r1'=>'required',
             'r2'=>'required',
-            'created_by'=>'required'
-        ]);
+            //'created_by'=>'required'
+        ]); 
+
+        // dd($request->all());
+
 
         SetPrice::create([
-            'item_code'=>$item_code,
+            'item_id'=>$item_id,
             'r1'=>$r1,
             'r2'=>$r2,
             'created_by'=>$created_by
@@ -55,26 +66,28 @@ class SetPriceController extends Controller
 
     public function edit($id)
     {
-        $setprices = SetPrice::find($id);
-        return view('admin.set-price.create-edit',compact('setprices')); 
+        //$items=Item::all(); 
+        
+        $setprice = SetPrice::find($id);
+        $items=Item::find($setprice->item_id); 
+        return view('admin.set-price.create-edit',compact('setprice','items')); 
     }
  
     public function update(Request $request, $id)
     {
-        $item_code = $request->item_code;
+        $item_id = $request->item_id;
         $r1 = $request->r1;
         $r2 = $request->r2;     
-        $created_by = Auth()->user()->id;        
+
 
         $request->validate([
-            'item_code'=>'required',
+            'item_id'=>'required',
             'r1'=>'required',
-            'r2'=>'required',
-            'created_by'=>'required'
+            'r2'=>'required'
         ]);
 
         SetPrice::find($id)->update([
-            'item_code'=>$item_code,
+            'item_id'=>$item_id,
             'r1'=>$r1,
             'r2'=>$r2
         ]); 

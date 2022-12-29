@@ -37,9 +37,10 @@
                                     </div>
                                 </div>
                                 <p><b>Total Amount: </b></p>
-                                <input type="text" name="total_amount" id="multiply_result" class="form-control" value="" readonly>
-                                <button type="button" onClick="multiplyAdd()">ADD</button>
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <div class="form-group d-flex">
+                                    <input type="text" name="total_amount" id="multiply_result" class="form-control" value="" readonly>
+                                </div>
+                                <button type="submit" class="btn btn-primary d-inline">Submit</button>
                             </form>
                         </div>
                     </div>
@@ -54,20 +55,19 @@
 <script>
     $(document).ready(function(){
         $('#addbtn').click(function(){
-            $('.parent_div').append('<div class="form-group d-flex"><select name="item_ids[]" class="form-control"><option value="">Please Choose items</option>@foreach ($items as $item)<option value="{{ $item->id }}">{{ $item->name }}</option>@endforeach</select><input type="number" class="form-control mx-2" name="qtys[]" placeholder="Quantity" id="quantity"><input type="text" placeholder="Price" name="purchase_price" id="price"><button id="delbtn" type="button" class="btn btn-danger d-inline mx-2">- Remove</button></div>');
+            $('.parent_div').append('<div class="form-group d-flex"><select name="item_ids[]" class="form-control"><option value="">Please Choose items</option>@foreach ($items as $item)<option value="{{ $item->id }}">{{ $item->name }}</option>@endforeach</select><input type="number" class="form-control mx-2 quantity" name="qtys[]" placeholder="Quantity" id="quantity"><input type="text" placeholder="Price" name="purchase_price[]" id="price" onchange="calculateTotal(this)"><button id="delbtn" type="button" class="btn btn-danger d-inline mx-2">- Remove</button></div>');
         });
         $('.parent_div').on('click', '#delbtn', function(){
             $(this).parent().remove();
         });
     });
-   
-        function multiplyAdd(){ 
-            quantity = document.getElementById("quantity").value;
-            price = document.getElementById("price").value;
-            $add = document.input.total_amount.value = quantity*price;
-            $i = 0;
-        }
-
+    var totalPrice = 0;
+    function calculateTotal(thisTextBox){ 
+        quantity = $(thisTextBox).parent().find('.quantity').val();
+        price = $(thisTextBox).val();
+        totalPrice += quantity * price;           
+        document.input.total_amount.value = totalPrice;
+    }
         
 </script>
 @endsection

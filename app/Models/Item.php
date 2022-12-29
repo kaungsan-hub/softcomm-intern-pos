@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Models\{Category, ItemLocation, Brand, User};
+use App\Models\{Category, ItemLocation, Brand, User, SetPrice};
 
 class Item extends Model
 {
@@ -24,5 +24,9 @@ class Item extends Model
     }
     public function users(){
         return $this->belongsTo(User::class, 'created_by');
+    }
+
+    public function setprice(){
+        return $this->hasOne(SetPrice::class,'item_id');
     }
 }
