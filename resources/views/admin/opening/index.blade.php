@@ -25,8 +25,6 @@
                                     <thead>
                                         <tr>
                                             <th>Opening ID</th>
-                                            <th>Item Name</th>
-                                            <th>Quantity</th>
                                             <th>Remark</th>
                                             <th>User</th>
                                             <th>Opening_Date</th>
@@ -34,14 +32,12 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($openingDetails as $openingDetail)
+                                        @foreach ($openings as $opening)
                                         <tr>
-                                            <td>{{$openingDetail->opening_id}}</td>
-                                            <td>{{$openingDetail->item->name}}</td>
-                                            <td>{{$openingDetail->quantity}}</td>
-                                            <td>{{$openingDetail->opening->remark}}</td>
-                                            <td>{{$openings->user}}</td>
-                                            <td>{{$openingDetail->created_at->format("j M Y")}}</td>
+                                            <td>{{$opening->id}}</td>
+                                            <td>{{$opening->remark}}</td>
+                                            <td>{{$opening->user->name}}</td>
+                                            <td>{{$opening->created_at->format("j M Y")}}</td>
                                             <td>
                                                 <form action="" method="POST"> @csrf  @method('delete')
                                                     <button class="btn btn-outline-danger btn-sm" onclick="return confirm('Are you sure?')">Remove</button>

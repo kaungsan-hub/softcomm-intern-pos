@@ -19,9 +19,9 @@ class OpeningController extends Controller
      */
     public function index()
     {
-        $openingDetails = OpeningDetail::all();
+        // $openingDetails = OpeningDetail::all();
         $openings = Opening::all();
-        return view('admin.opening.index',compact('openingDetails','openings'));
+        return view('admin.opening.index',compact('openings'));
     }
 
     /**
