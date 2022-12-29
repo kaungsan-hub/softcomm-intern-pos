@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\{Item, Purchase, Supplier, PurchaseDetail};
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class PurchaseController extends Controller
 {
@@ -48,23 +49,28 @@ class PurchaseController extends Controller
             'purchase_date'=>'required',
             'supplier_id'=>'required', 
         ]);
-        
-        Purchase::create([
-            'purchase_date'=>$purchase_date,
-            'supplier_id'=>$supplier_id,
-            'total_amount'=>$total_amount,
-            'created_by'=>$created_by,
-            'update_by'=>$update_by
-        ]);
-
-        PurchaseDetail::create([
-            // $purchase_id=;
-            // $item_id=;
-            // $item_code=;
-            // $quantity=;
-            // $purchase_price=;
-            // $amount=;
-        ]);
+        DB::beginTransaction();
+        try{
+            $purchase = Purchase::create([
+                'purchase_date'=>$purchase_date,
+                'supplier_id'=>$supplier_id,
+                'total_amount'=>$total_amount,
+                'created_by'=>$created_by,
+                'update_by'=>$update_by
+            ]);
+            for($i = 0; $i < count($request->item_ids); $i++){
+                PurchaseDetail::create([
+                    'purchase_id' => $purchase->id,
+                    'item_id' => $request->item_ids[$i],
+                    'quantity' => $request->qtys[$i],
+                    'purchase_price' => 1000,
+                    'amount' => $request->qtys[$i] * 1000,
+                ]);
+            }
+            DB::commit();
+        }catch(\Exception $e) {
+            DB::rollback();
+        }
         return redirect('/admin/purchases');
     }
 
