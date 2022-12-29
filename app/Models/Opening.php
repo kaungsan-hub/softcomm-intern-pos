@@ -19,8 +19,7 @@ class Opening extends Model
         return $this->hasMany(OpeningDetail::class);
     }
 
-    public function user()
-    {
+    public function user(){
         return $this->belongsTo(User::class, 'created_by');
     }
 }

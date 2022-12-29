@@ -20,7 +20,8 @@ class SaleController extends Controller
      */
     public function index()
     {
-        return view('admin.sale.index');
+        $sales = Sale::all();
+        return view('admin.sale.index', compact('sales'));
     }
 
     /**
@@ -30,7 +31,10 @@ class SaleController extends Controller
      */
     public function create()
     {
-        $items = Item::all();
+        $items =  Item::select('items.*')
+                    ->join("set_prices", "set_prices.item_id", "=", "items.id")
+                    ->get();
+        dd($items);
         return view('admin.sale.create-edit', compact('items'));
     }
 

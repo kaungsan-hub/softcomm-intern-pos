@@ -25,7 +25,6 @@ class Item extends Model
     public function users(){
         return $this->belongsTo(User::class, 'created_by');
     }
-
     public function setprice(){
         return $this->hasOne(SetPrice::class,'item_id');
     }

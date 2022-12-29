@@ -19,9 +19,17 @@ class OpeningController extends Controller
      */
     public function index()
     {
-        $openingDetails = OpeningDetail::all();
-        $openings = Opening::all();
-        return view('admin.opening.index',compact('openingDetails','openings'));
+        if (isset($request->q)) {
+            $openings = Opening::query()
+                ->where('remark', 'LIKE', "%{$request->q}%")
+                ->orWhere('created_by', 'LIKE', "%{$request->q}%")
+                ->get();
+        } else {
+            $openings = Opening::paginate(10);
+        }
+        // $openingDetails = OpeningDetail::all();
+       
+        return view('admin.opening.index',compact('openings'));
     }
 
     /**
