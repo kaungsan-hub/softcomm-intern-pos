@@ -11,10 +11,15 @@ class SetPrice extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    protected $fillable = ['item_code','r1','r2','created_by'];
+    protected $fillable = ['item_id','r1','r2','created_by'];
 
     public function user()
     {
         return $this->belongsTo(User::class, 'created_by');
+    }
+
+    public function items()
+    {
+        return $this->belongsTo(Item::class, 'item_id');
     }
 }

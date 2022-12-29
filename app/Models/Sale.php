@@ -17,11 +17,16 @@ class Sale extends Model
 
     public function creator()
     {
-        return $this->hasOne(User::class, 'created_by');
+        return $this->belongsTo(User::class, 'created_by');
     }
 
     public function updater()
     {
-        return $this->hasMany(User::class, 'updated_by');
+        return $this->belongsTo(User::class, 'updated_by');
+    }
+
+    public function saleDetails()
+    {
+        return $this->hasMany(SaleDetail::class, 'sale_id');
     }
 }
