@@ -23,7 +23,7 @@ class ItemController extends Controller
                 // ->orWhere('$brand->name', 'LIKE', "%{$request->search}%")
                 // ->orWhere('category', 'LIKE', "%{$request->search}%")
                 // ->orWhere('user', 'LIKE', "%{$request->search}%")
-                // ->orWhere('item_code', 'LIKE', "%{$request->search}%")
+                ->orWhere('item_code', 'LIKE', "%{$request->search}%")
                 ->get();
         }else{
         $items = Item::all();
