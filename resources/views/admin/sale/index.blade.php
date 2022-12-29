@@ -12,13 +12,21 @@
                                     <i class="la la-plus-circle"></i>
                                 </a>
                             </div>
-                            <form action="">
-                                <input type="text" class="form-control my-1 col-4 float-right" placeholder="search">
+                            <form method="GET" action="{{ url('admin/sales') }}" class="form-inline my-2 my-lg-0 float-right">
+                                <div class="input-group my-1">
+                                    <input type="text" class="form-control" placeholder="Search" name="q">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary btn-sm" type="submit">
+                                            <i class="la la-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
                             </form>
                             <div class="table-responsive">
-                                @if (Session::has('msg'))
-                                    <div class="alert {{ Session::get('msg-class') }}" role="alert">
-                                        {{ Session::get('msg') }}
+                                @if (session()->has('msg'))
+                                    <div class="alert alert-success">
+                                        <span>{{ session()->get('msg') }}</span>
+                                        <button type="button" class="close" data-dismiss="alert">&times;</button>
                                     </div>
                                 @endif
                                 <table class="table table-bordered table-hover">
@@ -31,6 +39,7 @@
                                             <th>Total Amount</th>
                                             <th>Created By</th>
                                             <th>Updated By</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -49,6 +58,18 @@
                                                 <td>{{ $sale->total_amount }}</td>
                                                 <td>{{ $sale->creator->name }}</td>
                                                 <td>{{ isset($sale->updater->name) ? $sale->updater->name : 'None' }}</td>
+                                                <td class="text-nowrap">
+
+                                                    <form action="{{ url('admin/sales/' . $sale->id) }}" method="post">
+                                                        @csrf
+                                                        @method('delete')
+
+                                                        <button class="btn btn-danger btn-sm"
+                                                            onclick="return confirm('Are you sure to delete?')"><i
+                                                                class="ft-trash"></i></button>
+                                                    </form>
+
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>

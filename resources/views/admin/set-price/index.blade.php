@@ -25,11 +25,11 @@
                                     class="form-control my-1 col-4 float-right" />
                             </div>
 
-                            @if (session()->has('msg'))
-                                <div class="alert alert-success" role="alert">
-                                    <span>{{ session()->get('msg') }} messagehere</span>
-                                    <button data-bs-dismiss="alert" class="btn btn-close float-right"> </button>
-                                </div>
+                            @if(session()->has('msg'))
+                            <div class="alert alert-success">
+                                <span>{{session()->get('msg')}}</span>
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            </div>
                             @endif
 
                             <div class="table-responsive">

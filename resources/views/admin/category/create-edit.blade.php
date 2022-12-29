@@ -15,10 +15,10 @@
                                 </a>
                             </div>
                             @if (isset($category))
-                            <form class="col-6" method="post" action="{{ url('admin/categories/'.$category->id) }}">
+                            <form class="" method="post" action="{{ url('admin/categories/'.$category->id) }}">
                             @method('PUT')
                             @else
-                            <form class="col-6" method="post" action="{{ url('admin/categories') }}">
+                            <form class="" method="post" action="{{ url('admin/categories') }}">
                             @endif
                                 @csrf
                                 <div class="form-body">

@@ -7,12 +7,12 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center">
-                                <div>Opening Tables</div>
-                                <a href="{{ route('openings.create') }}" class="btn btn-primary btn-sm" title="add new">
+                                <div>Store Index</div>
+                                <a href="" class="btn btn-primary btn-sm" title="add new">
                                     <i class="la la-plus-circle"></i>
                                 </a>
                             </div>
-                            <form method="GET" action="{{ url('/admin/openings') }}" class="form-inline my-2 my-lg-0 float-right">
+                            <form method="GET" action="" class="form-inline my-2 my-lg-0 float-right">
                                 <div class="input-group my-1">
                                     <input type="text" class="form-control" placeholder="Search" name="q">
                                     <div class="input-group-append">
@@ -23,35 +23,30 @@
                                 </div>
                             </form>
                             <div class="table-responsive">
-                                @if (session()->has('msg'))
-                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                        <span>{{session()->get('msg')}}</span>
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                          <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                @endif
                                 <table class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
-                                            <th>Opening ID</th>
-                                            <th>Remark</th>
-                                            <th>User</th>
-                                            <th>Opening_Date</th>
+                                            <th>ID</th>
+                                            <th>Item Code</th>
+                                            <th>In Quantity</th>
+                                            <th>Out Quantity</th>
+                                            <th>Balance</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($openings as $opening)
+                                        @foreach ($stores as $store)
                                         <tr>
-                                            <td>{{$opening->id}}</td>
-                                            <td>{{$opening->remark}}</td>
-                                            <td>{{$opening->user->name}}</td>
-                                            <td>{{$opening->created_at->format("j M Y")}}</td>
+                                            <td>{{$store->id}}</td>
+                                            <td>{{$store->item->item_code}}</td>
+                                            <td>{{$store->in_qty}}</td>
+                                            <td>{{$store->out_qty}}</td>
+                                            <td>{{$store->balance}}</td>
+                        
                                         </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
-                                {{$openings->links()}}
+                                {{-- {{$stores->links()}} --}}
                             </div>
                         </div>
                     </div>

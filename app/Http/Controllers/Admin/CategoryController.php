@@ -21,9 +21,9 @@ class CategoryController extends Controller
             $categories = Category::query()
                 ->where('name', 'LIKE', "%{$request->q}%")
                 ->orWhere('description', 'LIKE', "%{$request->q}%")
-                ->get();
+                ->paginate(10);
         } else {
-            $categories = Category::all();
+            $categories = Category::paginate(10);
         }
         return view('admin.category.index',compact('categories'));
     }

@@ -27,6 +27,9 @@ Route::middleware('authMiddleware')->group(function () {
         //set-price
         Route::resource('/setprices',SetPriceController::class);
         
+        #store
+        Route::get('/store', [StoreController::class, 'index']);
+
         // Sample
         Route::get('/sample', [AdminController::class, 'sampleIndex']);
         Route::get('/sample/create-edit', [AdminController::class, 'sampleCreateEdit']);

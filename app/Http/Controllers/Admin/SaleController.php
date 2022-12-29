@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Customer;
 use App\Models\Item;
 use App\Models\Sale;
 use App\Models\SaleDetail;
+use App\Models\Store;
 use DateTime;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
@@ -13,37 +15,34 @@ use Illuminate\Support\Facades\DB;
 
 class SaleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+
+    public function index(Request $request)
     {
-        $sales = Sale::all();
+        if (isset($request->q)) {
+            $sales = Sale::select('sales.*')
+                    ->join("customers", "customers.id", "=", "sales.customer_id")
+                    ->where('sales.id', 'LIKE', "%{$request->q}%")
+                    ->orWhere('sale_date', 'LIKE', "%{$request->q}%")
+                    ->orWhere('customers.name', 'LIKE', "%{$request->q}%")
+                    ->get();
+        } else {
+            $sales = Sale::all();
+        }
+
         return view('admin.sale.index', compact('sales'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
+        $customers = Customer::all();
         $items =  Item::select('items.*')
                     ->join("set_prices", "set_prices.item_id", "=", "items.id")
+                    ->join("stores", "stores.item_id", "=", "items.id")
                     ->get();
-        dd($items);
-        return view('admin.sale.create-edit', compact('items'));
+        return view('admin.sale.create-edit', compact('customers', 'items'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $request->validate([
@@ -60,6 +59,7 @@ class SaleController extends Controller
                 'total_amount' => $request->totalAmount,
                 'created_by' => Auth()->user()->id,
             ]);
+            
             for ($i = 0; $i < count($request->item_ids); $i++) {
                 $item = Item::find($request->item_ids[$i]);
                 $amount = $item->setprice->r1 * $request->quantities[$i];
@@ -68,6 +68,12 @@ class SaleController extends Controller
                     'item_id' => $request->item_ids[$i],
                     'quantity' => $request->quantities[$i],
                     'amount' => $amount,
+                ]);
+
+                $store = Store::find($request->item_ids[$i]);
+                $store->update([
+                    'out_qty' => $store->out_qty + $request->quantities[$i],
+                    'balance' => $store->balance - $request->quantities[$i],
                 ]);
             }
             DB::commit();
@@ -78,48 +84,29 @@ class SaleController extends Controller
         return redirect('admin/sales')->with('msg', 'A sale has been done successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Sale  $sale
-     * @return \Illuminate\Http\Response
-     */
+
     public function show(Sale $sale)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Sale  $sale
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit(Sale $sale)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Sale  $sale
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, Sale $sale)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Sale  $sale
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Sale $sale)
+
+    public function destroy($id)
     {
-        //
+        Sale::find($id)->delete();
+        SaleDetail::where('sale_id', '=', $id)->delete();
+        return redirect('/admin/sales')->with('msg', 'One of Sales Information has been deleted successfully');
     }
 }
