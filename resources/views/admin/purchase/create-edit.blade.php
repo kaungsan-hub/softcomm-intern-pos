@@ -22,18 +22,18 @@
                                         <label>Purchase Date</label>
                                         <input type="date"
                                         name="purchase_date" class="form-control @error('purchase_date') is-invalid @enderror">
-                                       
+
                                     </div>
                                     <div class="form-group">
                                         <select name="supplier_id" class="form-control @error('supplier_id') is-invalid @enderror">
-                                            
+
                                                 <option value="">Please Choose supplier</option>
                                             @foreach ($suppliers as $supplier)
                                                 <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
-                                            @endforeach             
+                                            @endforeach
                                         </select>
                                     </div>
-                                    
+
                                     <div class="parent_div form-group">
                                         <button type="button" id="addbtn" class="btn btn-primary mb-2">+ Add New Items and Quantity</button>
                                     </div>
@@ -50,28 +50,32 @@
             </div>
         </div>
     </div>
-    
+
 @endsection
 
 @section('js')
 <script>
     $(document).ready(function(){
         $('#addbtn').click(function(){
-            $('.parent_div').append('<div class="form-group d-flex"><select name="item_ids[]" class="form-control"><option value="">Please Choose items</option>@foreach ($items as $item)<option value="{{ $item->id }}">{{ $item->name }}</option>@endforeach</select><input type="number" class="form-control mx-2 quantity" name="qtys[]" placeholder="Quantity" id="quantity"><input type="text" placeholder="Price" name="purchase_price[]" id="price" onchange="calculateTotal(this)"><button id="delbtn" type="button" class="btn btn-danger d-inline mx-2 removeBtn">- Remove</button></div>');
-        });
-        $('.parent_div').on('click', '#delbtn', function(){
-            $(this).parent().remove();
+            $('.parent_div').append('<div class="form-group d-flex"><select name="item_ids[]" class="form-control"><option value="">Please Choose items</option>@foreach ($items as $item)<option value="{{ $item->id }}">{{ $item->name }}</option>@endforeach</select><input type="number" class="form-control mx-2 quantity" name="qtys[]" placeholder="Quantity" id="quantity"><input type="text" placeholder="Price" class="price" name="purchase_price[]" id="price" onchange="calculateTotal(this)"><button id="delbtn" type="button" class="btn btn-danger d-inline mx-2 removeBtn" onclick="removePrice(this);">- Remove</button></div>');
         });
     });
 
     var totalPrice = 0;
-    function calculateTotal(thisTextBox){ 
+    function calculateTotal(thisTextBox){
         quantity = $(thisTextBox).parent().find('.quantity').val();
         price = $(thisTextBox).val();
-        totalPrice += quantity * price;           
+        totalPrice += quantity * price;
         document.input.total_amount.value = totalPrice;
     }
-   
-        
+
+    function removePrice(thisButton) {
+        $(thisButton).parent().remove();
+        var priceToRemove =$(thisButton).parent().find(".quantity").val() * $(thisButton).parent().find(".price").val();
+        totalPrice -= priceToRemove;
+        document.input.total_amount.value = totalPrice;
+    }
+
+
 </script>
 @endsection
