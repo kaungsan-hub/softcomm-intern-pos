@@ -46,7 +46,7 @@
                                         @endforeach
                                     </tbody>
                                 </table>
-                                {{-- {{$stores->links()}} --}}
+                                {{$stores->links()}}
                             </div>
                         </div>
                     </div>

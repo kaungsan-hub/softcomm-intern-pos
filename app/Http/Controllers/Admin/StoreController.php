@@ -13,6 +13,4 @@ class StoreController extends Controller
         return view('admin.store.index',compact('stores'));
     }
 
-
-
 }
