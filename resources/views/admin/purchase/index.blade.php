@@ -59,8 +59,8 @@
                                                 @endforeach
                                             </td>
                                             <td>
-                                                <form action="{{url('admin/items/'.$p->id)}}" method="POST"> @csrf  @method('delete')
-                                                    <a href="{{url('admin/items/'.$p->id.'/edit')}}" class="btn btn-sm btn-warning"><i class="ft-edit"></i></a>
+                                                <form action="{{url('admin/purchases/'.$p->id)}}" method="POST"> @csrf  @method('delete')
+                                                    {{-- <a href="{{url('admin/items/'.$p->id.'/edit')}}" class="btn btn-sm btn-warning"><i class="ft-edit"></i></a> --}}
                                                     <button class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')"><i class="ft-trash"></i></button>
                                                 </form>
                                             </td>

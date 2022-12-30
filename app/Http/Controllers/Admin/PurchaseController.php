@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\{Item, Purchase, Supplier, PurchaseDetail};
+use App\Models\{Item, Purchase, Supplier, PurchaseDetail, Store};
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -67,6 +67,11 @@ class PurchaseController extends Controller
                     'purchase_price' => $request->purchase_price[$i],
                     'amount' => $request->qtys[$i] * $request->purchase_price[$i]
                 ]);
+                Store::create([
+                    'item_id' => $request->item_ids[$i],
+                    'in_qty' => $request->qtys[$i],
+                    'balance' => $request->qtys[$i] * $request->purchase_price[$i]
+                ]);
             }
             DB::commit();
         }catch(\Exception $e) {
@@ -107,7 +112,7 @@ class PurchaseController extends Controller
     public function update(Request $request, $id)
     {
         //
-    }
+    }   
 
     /**
      * Remove the specified resource from storage.
@@ -117,6 +122,8 @@ class PurchaseController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Purchase::find($id)->delete();
+        DB::table('purchase_details')->where('purchase_id', '=', $id)->delete();
+        return back();
     }
 }

@@ -11,7 +11,7 @@
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center my-1">
                                 <div>Purchase Form</div>
-                                <a href="{{ url('admin/sample') }}" class="btn btn-primary btn-sm" title="back">
+                                <a href="{{ url('admin/purchases') }}" class="btn btn-primary btn-sm" title="back">
                                     <i class="la la-chevron-circle-left"></i>
                                 </a>
                             </div>
@@ -61,6 +61,7 @@
             $(this).parent().remove();
         });
     });
+
     var totalPrice = 0;
     function calculateTotal(thisTextBox){ 
         quantity = $(thisTextBox).parent().find('.quantity').val();

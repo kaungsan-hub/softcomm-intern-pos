@@ -67,6 +67,9 @@ class ItemController extends Controller
         $request->validate([
             'item_code'=>'required',
             'name'=>'required',
+            'brand_id'=>'required',
+            'category_id'=>'required',
+            'item_location_id'=>'required',
             'reorder_qty'=>'required',
             'remark'=>'required'
         ]);
@@ -127,6 +130,9 @@ class ItemController extends Controller
         $request->validate([
             'item_code'=>'required',
             'name'=>'required',
+            'brand_id'=>'required',
+            'category_id'=>'required',
+            'item_location_id'=>'required',
             'reorder_qty'=>'required',
             'remark'=>'required'
         ]);

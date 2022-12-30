@@ -27,7 +27,7 @@
                                         <input type="text" value="{{old('name') ?? $items->name}}" id="donationinput2" class="form-control @error('name') is-invalid @enderror" placeholder="Name" name="name">
                                     </div>
                                     <div class="form-group">
-                                        <select name="brand_id" class="form-control">
+                                        <select name="brand_id" class="form-control @error('brand_id') is-invalid @enderror">
                                                 <option value="">Please Choose Brand</option>
                                             @foreach ($brands as $brand)
                                                 <option value="{{ $brand->id }}">{{ $brand->name }}</option>
@@ -35,7 +35,7 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <select name="category_id" class="form-control">
+                                        <select name="category_id" class="form-control @error('category_id') is-invalid @enderror">
                                                 <option value="">Please Choose Category</option>
                                             @foreach ($categories as $category)
                                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -43,7 +43,7 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <select name="item_location_id" class="form-control">
+                                        <select name="item_location_id" class="form-control @error('item_location_id') is-invalid @enderror">
                                                 <option value="">Please Choose Item Location</option>
                                             @foreach ($itemlocation as $il)
                                                 <option value="{{ $il->id }}">{{ $il->name }}</option>
@@ -84,15 +84,15 @@
                                         <input type="text" id="donationinput2" class="form-control @error('name') is-invalid @enderror" placeholder="Name" name="name">
                                     </div>
                                     <div class="form-group">
-                                        <select name="brand_id" class="form-control">
-                                                <option value="">Please Choose Brand</option>
+                                        <select name="brand_id" class="form-control @error('brand_id') is-invalid @enderror">
+                                                <option value="" class="">Please Choose Brand</option>
                                             @foreach ($brands as $brand)
                                                 <option value="{{ $brand->id }}">{{ $brand->name }}</option>
                                             @endforeach             
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <select name="category_id" class="form-control">
+                                        <select name="category_id" class="form-control @error('category_id') is-invalid @enderror">
                                                 <option value="">Please Choose Category</option>
                                             @foreach ($categories as $category)
                                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -100,7 +100,7 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <select name="item_location_id" class="form-control">
+                                        <select name="item_location_id" class="form-control @error('item_location_id') is-invalid @enderror">
                                                 <option value="">Please Choose Item Location</option>
                                             @foreach ($itemlocation as $il)
                                                 <option value="{{ $il->id }}">{{ $il->name }}</option>
