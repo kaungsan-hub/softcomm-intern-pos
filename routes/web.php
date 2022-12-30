@@ -66,7 +66,7 @@ Route::middleware('authMiddleware')->group(function () {
         Route::resource('/purchase-details', PurchaseDetailController::class);
 
         #store
-        Route::get('/store', [StoreController::class, 'index']);
+        Route::get('/stores', [StoreController::class, 'index']);
 
         #opening
         Route::resource('/openings', OpeningController::class);
