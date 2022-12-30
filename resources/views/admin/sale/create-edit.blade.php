@@ -12,6 +12,12 @@
                                     <i class="la la-chevron-circle-left"></i>
                                 </a>
                             </div>
+                            @if (session()->has('msg'))
+                                    <div class="alert alert-danger">
+                                        <span>{{ session()->get('msg') }}</span>
+                                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                    </div>
+                                @endif
                             <form class="form" method="POST" action="{{ url('admin/sales') }}">
                                 @csrf
                                 <div class="form-body">

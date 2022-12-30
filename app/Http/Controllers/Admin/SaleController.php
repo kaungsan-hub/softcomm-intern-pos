@@ -59,7 +59,7 @@ class SaleController extends Controller
                 'total_amount' => $request->totalAmount,
                 'created_by' => Auth()->user()->id,
             ]);
-            
+
             for ($i = 0; $i < count($request->item_ids); $i++) {
                 $item = Item::find($request->item_ids[$i]);
                 $amount = $item->setprice->r1 * $request->quantities[$i];
@@ -71,6 +71,11 @@ class SaleController extends Controller
                 ]);
 
                 $store = Store::find($request->item_ids[$i]);
+
+                if($store->balance - $request->quantities[$i] < 0) {
+                    return redirect('admin/sales/create')->with('msg', 'Insufficient items.');
+                }
+
                 $store->update([
                     'out_qty' => $store->out_qty + $request->quantities[$i],
                     'balance' => $store->balance - $request->quantities[$i],
