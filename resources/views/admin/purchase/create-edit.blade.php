@@ -22,15 +22,11 @@
                                         <label>Purchase Date</label>
                                         <input type="date"
                                         name="purchase_date" class="form-control @error('purchase_date') is-invalid @enderror">
-                                        @error('purchase_date')
-                                        <Span class="invalid-feedback">{{$message}}</Span>
-                                        @enderror
+                                       
                                     </div>
                                     <div class="form-group">
                                         <select name="supplier_id" class="form-control @error('supplier_id') is-invalid @enderror">
-                                            @error('supplier_id')
-                                            <Span class="invalid-feedback">{{$message}}</Span>
-                                            @enderror>
+                                            
                                                 <option value="">Please Choose supplier</option>
                                             @foreach ($suppliers as $supplier)
                                                 <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
