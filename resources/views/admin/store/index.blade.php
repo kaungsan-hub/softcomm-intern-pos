@@ -28,6 +28,7 @@
                                         <tr>
                                             <th>ID</th>
                                             <th>Item Code</th>
+                                            <th>Item Name</th>
                                             <th>In Quantity</th>
                                             <th>Out Quantity</th>
                                             <th>Balance</th>
@@ -38,10 +39,11 @@
                                         <tr>
                                             <td>{{$store->id}}</td>
                                             <td>{{$store->item->item_code}}</td>
+                                            <td>{{$store->item->name}}</td>
                                             <td>{{$store->in_qty}}</td>
                                             <td>{{$store->out_qty}}</td>
                                             <td>{{$store->balance}}</td>
-                        
+
                                         </tr>
                                         @endforeach
                                     </tbody>
