@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Admin\ItemLocationController;
 
-use App\Http\Controllers\Admin\{AdminController, OpeningController, AuthController, SupplierController, SetPriceController, PurchaseController, PurchaseDetailController, CounterController, CustomerController, UserController, ItemController, SaleController, CategoryController, BrandController};
+use App\Http\Controllers\Admin\{AdminController, OpeningController, AuthController, SupplierController, SetPriceController, PurchaseController, PurchaseDetailController, CounterController, CustomerController, UserController, ItemController, SaleController, CategoryController, BrandController, StoreController};
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -36,10 +36,10 @@ Route::middleware('authMiddleware')->group(function () {
 
         // Customer
         Route::resource('/customers', CustomerController::class);
-    
+
         //supplier
         Route::resource('/suppliers',SupplierController::class);
-        
+
         Route::get('/suppliers/autocomplete-search', [SupplierController::class, 'autocompleteSearch']);
 
         // Item
@@ -57,7 +57,7 @@ Route::middleware('authMiddleware')->group(function () {
         // Brand
         Route::resource('/brands', BrandController::class);
 
-        
+
         //Supplier
         Route::resource('/suppliers', SupplierController::class);
 
