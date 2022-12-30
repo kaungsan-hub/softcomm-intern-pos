@@ -8,7 +8,7 @@
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center my-1">
                                 <div>Sale Form</div>
-                                <a href="{{ url('admin/sample') }}" class="btn btn-primary btn-sm" title="back">
+                                <a href="{{ url('admin/sales') }}" class="btn btn-primary btn-sm" title="back">
                                     <i class="la la-chevron-circle-left"></i>
                                 </a>
                             </div>
@@ -26,7 +26,7 @@
                                         </select>
                                         {{-- <input type="text" class="form-control @error('customer_id') is-invalid @enderror" placeholder="Customer ID"
                                             name="customer_id" value="{{ old('customer_id') }}">
-                                        @error('customer_id') 
+                                        @error('customer_id')
                                             <span class="invalid-feedback">{{ $message }}</span>
                                         @enderror --}}
                                     </div>
@@ -40,7 +40,7 @@
                                     <div id="NewItemDiv">
                                     </div>
                                 </div>
-                                <p><b>Total Amount: </b><span id="totalAmount">0 Ks</span></p> 
+                                <p><b>Total Amount: </b><span id="totalAmount">0 Ks</span></p>
                                 <input type='text' value='' name='totalAmount' class='totalAmountTextBox' hidden>
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </form>
@@ -87,7 +87,7 @@
                             "</div>" +
                         "</div>";
 
-    
+
     function addNewItemDiv() {
         $('#NewItemDiv').append(NewItemDivCode);
     }
@@ -122,10 +122,10 @@
         var quantity = $(thisSelect).parent().parent().parent().find('.quantityInput').val();
 
         // subtract previously selected price amount from total amount
-        totalAmount -= previousSelectedItemPrice * quantity; 
+        totalAmount -= previousSelectedItemPrice * quantity;
 
         // add the newly selected price amount
-        totalAmount += itemPrice * quantity; 
+        totalAmount += itemPrice * quantity;
 
         // update total amount UI
         $('#totalAmount').html(totalAmount + " KS");
@@ -138,10 +138,10 @@
         var quantity = $(thisTextBox).val();
 
          // subtract previously selected price amount from total amount
-        totalAmount -= itemPrice * previousQuantity; 
+        totalAmount -= itemPrice * previousQuantity;
 
         // add the newly selected price amount
-        totalAmount += itemPrice * quantity; 
+        totalAmount += itemPrice * quantity;
 
         // update total amount UI
         $('#totalAmount').html(totalAmount + " KS");
