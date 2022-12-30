@@ -12,16 +12,16 @@
                                     <i class="la la-plus-circle"></i>
                                 </a>
                             </div>
-                            @if(session() -> has('msg'))
-                            <div class=" alert alert-success alert-dismissable fade show">
-                                <span>{{ session()->get('msg')}}</span>
-                                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                            </div>
-                            @endif 
                             <form action="">
                                 <input type="text" class="form-control my-1 col-4 float-right" placeholder="search" name="q">
                             </form>
                             <div class="table-responsive">
+                                @if(session() -> has('msg'))
+                                <div class=" alert alert-success alert-dismissable fade show">
+                                    <span>{{ session()->get('msg')}}</span>
+                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                </div>
+                                @endif
                                 <table class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
@@ -51,12 +51,12 @@
                                             <td class="text-nowrap">{{$c->city}}</td>
                                             <td class="text-nowrap">{{$c->remark}}</td>
                                             <td class="text-nowrap">{{$c->user->name}}</td>
-                                            
+
                                             <td class="text-nowrap">
-                                                <form action="{{url('admin/customers/' .$c->id) }}" method="post"> 
+                                                <form action="{{url('admin/customers/' .$c->id) }}" method="post">
                                                     @method('delete')
                                                     @csrf
-                                                
+
                                                 <a href="{{ url('admin/customers/' .$c->id. '/edit')}}" class="btn btn-primary ">Edit</a>
                                                 <button class="btn btn-danger" onclick="return confirm('are you sure to delete?')">Delete</button>
                                                 </form>
@@ -65,7 +65,7 @@
                                         @endforeach
                                     </tbody>
                                 </table>
-                            </div>  
+                            </div>
                         </div>
                     </div>
                 </div>

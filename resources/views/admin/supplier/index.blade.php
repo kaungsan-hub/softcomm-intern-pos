@@ -41,14 +41,16 @@
                                 });
                             </script>
 
-                            @if(session()->has('msg'))
-                            <div class="alert alert-success">
-                                <span>{{session()->get('msg')}}</span>
-                                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                            </div>
-                            @endif
 
                             <div class="table-responsive">
+                                @if (session()->has('msg'))
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                        <span>{{session()->get('msg')}}</span>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                @endif
                                 <table class="table table-bordered table-hover">
                                     <thead>
                                         <tr class="text-center">
@@ -80,13 +82,13 @@
                                                 <td>{{ $supplier->updated_at }}</td>
                                                 <td>{{ $supplier->deleted_at }}</td>
                                                 <td class="text-nowrap">
-                                                 
+
                                                     <form action="{{ url('admin/suppliers/' . $supplier->id) }}" method="post">
                                                         @csrf
                                                         @method('delete')
-                                                        <a href="{{ url('admin/suppliers/' . $supplier->id . '/edit') }}" class="btn btn-info btn-sm"><i class="ft-edit"></i></a> 
-                                                            
-                                                            <button class="btn btn-danger btn-sm" onclick="return confirm('Are you sure to delete?')"><i class="ft-trash"></i></button> 
+                                                        <a href="{{ url('admin/suppliers/' . $supplier->id . '/edit') }}" class="btn btn-info btn-sm"><i class="ft-edit"></i></a>
+
+                                                            <button class="btn btn-danger btn-sm" onclick="return confirm('Are you sure to delete?')"><i class="ft-trash"></i></button>
                                                     </form>
 
                                                 </td>
