@@ -25,9 +25,11 @@
                             <div class="table-responsive">
                                 @if (Session::has('msg'))
                                     <div class="alert {{ Session::get('msg-class') }}" role="alert">
-                                        {{ Session::get('msg') }}
+                                        <span>{{ Session::get('msg') }}</span>
+                                        <button type="button" class="close" data-dismiss="alert">&times;</button>
                                     </div>
                                 @endif
+
                                 <table class="table table-bordered table-hover">
                                     <thead>
                                         <tr>

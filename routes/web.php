@@ -2,10 +2,8 @@
 
 use App\Http\Controllers\Admin\ItemLocationController;
 
-use App\Http\Controllers\Admin\{AdminController, OpeningController, AuthController, SupplierController, PurchaseController, PurchaseDetailController, CustomerController, UserController, ItemController, SaleController, CategoryController, BrandController, StoreController};
+use App\Http\Controllers\Admin\{AdminController, OpeningController, AuthController, SupplierController, SetPriceController, PurchaseController, PurchaseDetailController, CounterController, CustomerController, UserController, ItemController, SaleController, CategoryController, BrandController};
 use Illuminate\Support\Facades\Route;
-
-use App\Http\Controllers\Admin\SetPriceController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -13,10 +11,13 @@ Route::get('/', function () {
 
 
 
+
+
 // Login
 Route::get('/login', [AuthController::class, 'showLogin']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout']);
+
 
 Route::middleware('authMiddleware')->group(function () {
     Route::prefix('admin')->group(function () {
