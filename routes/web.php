@@ -2,14 +2,14 @@
 
 use App\Http\Controllers\Admin\ItemLocationController;
 
-use App\Http\Controllers\Admin\{AdminController, OpeningController, AuthController, SupplierController, PurchaseController, PurchaseDetailController, CounterController, CustomerController, UserController, ItemController, SaleController, CategoryController, BrandController};
+use App\Http\Controllers\Admin\{AdminController, OpeningController, AuthController, SupplierController, SetPriceController, PurchaseController, PurchaseDetailController, CounterController, CustomerController, UserController, ItemController, SaleController, CategoryController, BrandController, StoreController};
 use Illuminate\Support\Facades\Route;
-
-use App\Http\Controllers\Admin\SetPriceController;
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+
 
 
 
@@ -18,6 +18,7 @@ Route::get('/login', [AuthController::class, 'showLogin']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout']);
 
+
 Route::middleware('authMiddleware')->group(function () {
     Route::prefix('admin')->group(function () {
         // Main
@@ -25,7 +26,7 @@ Route::middleware('authMiddleware')->group(function () {
 
         //set-price
         Route::resource('/setprices',SetPriceController::class);
-        
+
         // Sample
         Route::get('/sample', [AdminController::class, 'sampleIndex']);
         Route::get('/sample/create-edit', [AdminController::class, 'sampleCreateEdit']);
@@ -35,10 +36,10 @@ Route::middleware('authMiddleware')->group(function () {
 
         // Customer
         Route::resource('/customers', CustomerController::class);
-    
+
         //supplier
         Route::resource('/suppliers',SupplierController::class);
-        
+
         Route::get('/suppliers/autocomplete-search', [SupplierController::class, 'autocompleteSearch']);
 
         // Item
@@ -56,13 +57,16 @@ Route::middleware('authMiddleware')->group(function () {
         // Brand
         Route::resource('/brands', BrandController::class);
 
-        
+
         //Supplier
         Route::resource('/suppliers', SupplierController::class);
 
         #purchase
         Route::resource('/purchases', PurchaseController::class);
         Route::resource('/purchase-details', PurchaseDetailController::class);
+
+        #store
+        Route::get('/stores', [StoreController::class, 'index']);
 
         #opening
         Route::resource('/openings', OpeningController::class);

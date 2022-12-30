@@ -25,7 +25,15 @@ class SetPriceController extends Controller
 
     public function create()
     {
-        $items=Item::all(); 
+        // $setprices = SetPrice::pluck('item_id'); //collection
+
+        $item_ids = SetPrice::pluck('item_id')->toArray(); 
+
+        $items=Item::whereNotIn('id', $item_ids)->get(); // whereIn and whereNotIn
+ 
+        //$setprices = SetPrice::all('item_id')->toArray();
+        //return $setprices; 
+        //dd($setprices);
         return view('admin.set-price.create-edit',compact('items'));
     }
 

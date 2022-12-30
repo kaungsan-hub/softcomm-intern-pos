@@ -28,7 +28,7 @@ class OpeningController extends Controller
             $openings = Opening::paginate(10);
         }
         // $openingDetails = OpeningDetail::all();
-       
+
         return view('admin.opening.index',compact('openings'));
     }
 
@@ -52,6 +52,9 @@ class OpeningController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'remark' => 'required',
+        ]);
 
         DB::beginTransaction();
         try{

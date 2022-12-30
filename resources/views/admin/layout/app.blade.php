@@ -183,6 +183,10 @@
                         href="{{ url('admin/openings') }}"><i class="ft-arrow-right"></i><span class="menu-title"
                             data-i18n="">Opening</span></a>
                 </li>
+                <li class="nav-item {{ Route::current()->uri == 'admin/stores' ? 'active' : '' }}"><a
+                        href="{{ url('admin/stores') }}"><i class="ft-briefcase"></i><span class="menu-title"
+                            data-i18n="">Stores</span></a>
+                </li>
                 <li class="nav-item {{ Route::current()->uri == 'admin/setprices' ? 'active' : '' }}"><a
                         href="{{ url('admin/setprices') }}"><i class="ft-award"></i><span class="menu-title"
                             data-i18n="">Set Price</span></a>
